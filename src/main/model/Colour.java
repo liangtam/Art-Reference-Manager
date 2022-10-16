@@ -33,8 +33,7 @@ public class Colour {
         int g = Integer.valueOf(hex.substring(3, 5), 16);
         int b = Integer.valueOf(hex.substring(5, 7), 16);
 
-        Color color = new Color(r, g, b);
-        this.colorVisual = color;
+        this.colorVisual = new Color(r, g, b);
     }
 
     public String getHex() {

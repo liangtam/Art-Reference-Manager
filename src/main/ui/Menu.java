@@ -59,6 +59,7 @@ public class Menu {
 
     // MODIFIES: this, ColourPalette
     // EFFECTS: Guides the user on how to create a colour palette
+    @SuppressWarnings("methodlength")
     public void processCreateColourPalette() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name of palette:");
@@ -100,6 +101,7 @@ public class Menu {
 
         return false;
     }
+
     // MODIFIES: this
     // EFFECTS: creates a colour palette, returns true if successful
     public boolean createColourPalette(String name, String hex) {
