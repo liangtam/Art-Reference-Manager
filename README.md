@@ -56,6 +56,7 @@ That's why I search up references on my laptop instead.
 - As a user, I want to be able to delete any reference image uploaded
 - As a user, I want to be able to create and name a colour palette
 - As a user, I want to be able to add multiple colours with specific hex/rgb values into a colour palette
+- As a user, I want to be able to add colour palettes within colour palettes
 - As a user, I want to be able to rename and delete a colour palette
 - As a user, I want to be able to change, delete, and add colours in a colour palette
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to select different images and colour palettes of my choosing,
