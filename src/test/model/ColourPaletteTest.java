@@ -20,8 +20,9 @@ public class ColourPaletteTest {
         colour1 = new Colour("Red", "#FF0000");
         colour2 = new Colour("Green", "#00FF00");
         colour3 = new Colour("Sky Blue", "#87CEEB");
-        sunsetColourPalette = new ColourPalette("Palette1");
-        oceanColourPalette = new ColourPalette("Palette2");
+        sunsetColourPalette = new ColourPalette("Sunset Colours");
+        oceanColourPalette = new ColourPalette("Ocean Colours");
+        warmColourPalette = new ColourPalette("Warm Colours");
     }
 
     // tests for addColour
