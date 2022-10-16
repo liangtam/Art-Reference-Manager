@@ -17,7 +17,7 @@ public class ColourPaletteTest {
 
     @BeforeEach
     public void setUp() {
-        colour1 = new Colour("Red", "#FFF0000");
+        colour1 = new Colour("Red", "#FF0000");
         colour2 = new Colour("Green", "#00FF00");
         colour3 = new Colour("Sky Blue", "#87CEEB");
         sunsetColourPalette = new ColourPalette("Palette1");
@@ -125,5 +125,18 @@ public class ColourPaletteTest {
         int numOfColourPalettes = sunsetColourPalette.getNumOfColourPalettes();
         assertEquals(1, numOfColourPalettes);
         assertEquals(oceanColourPalette, sunsetColourPalette.getSubColourPalettes().get(0));
+    }
+
+    // other tests
+    @Test
+    public void testIfSubColourPaletteAlreadyExists() {
+        sunsetColourPalette.addColour(colour1);
+        sunsetColourPalette.addColour(colour2);
+
+        boolean colour1Exists = sunsetColourPalette.ifColourAlreadyExists(colour1);
+        boolean colour3Exists = sunsetColourPalette.ifColourAlreadyExists(colour3);
+
+        assertTrue(colour1Exists);
+        assertFalse(colour3Exists);
     }
 }
