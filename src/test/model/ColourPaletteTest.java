@@ -75,7 +75,7 @@ public class ColourPaletteTest {
         sunsetColourPalette.addColour(colour1);
         sunsetColourPalette.addColour(colour2);
 
-        boolean delColour1Success = sunsetColourPalette.deleteColour(colour1);
+        boolean delColour1Success = sunsetColourPalette.deleteColour(colour1.getName());
         assertTrue(delColour1Success);
         int numOfColours = sunsetColourPalette.getNumOfColours();
         assertEquals(1, numOfColours);
@@ -131,13 +131,12 @@ public class ColourPaletteTest {
     // other tests
     @Test
     public void testIfSubColourPaletteAlreadyExists() {
-        sunsetColourPalette.addColour(colour1);
-        sunsetColourPalette.addColour(colour2);
+        sunsetColourPalette.addSubColourPalette(warmColourPalette);
 
-        boolean colour1Exists = sunsetColourPalette.ifColourAlreadyExists(colour1);
-        boolean colour3Exists = sunsetColourPalette.ifColourAlreadyExists(colour3);
+        boolean warmCPExists = sunsetColourPalette.ifSubColourPaletteAlreadyExists(warmColourPalette.getName());
+        boolean oceanCPExists = sunsetColourPalette.ifSubColourPaletteAlreadyExists(oceanColourPalette.getName());
 
-        assertTrue(colour1Exists);
-        assertFalse(colour3Exists);
+        assertTrue(warmCPExists);
+        assertFalse(oceanCPExists);
     }
 }

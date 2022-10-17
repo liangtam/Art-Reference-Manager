@@ -37,14 +37,20 @@ public class ColourPalette {
     // EFFECTS: if the colour exists already in the current palette's colours collection,
     //          deletes given colour from current palette (not in any sub palettes!), return true
     //          else, do nothing and return false
-    public boolean deleteColour(Colour colour) {
+    public boolean deleteColour(String colour) {
+        if (colours.isEmpty()) {
+            System.out.println("There are currently no colours in this palette.");
+            return false;
+        }
         for (Colour c: colours) {
-            if (c == colour) {
+            if (c.getName().equals(colour)) {
                 this.colours.remove(c);
                 this.numOfColours--;
+                System.out.println("Deleted " + c.getName());
                 return true;
             }
         }
+        System.out.println("The colour does not exist.");
         return false;
     }
 
@@ -55,7 +61,7 @@ public class ColourPalette {
     //          adds given colour palette to collection of subColourPalettes, return true
     //          else, do nothing and return false
     public boolean addSubColourPalette(ColourPalette colourPalette) {
-        if (ifSubColourPaletteAlreadyExists(colourPalette)) {
+        if (ifSubColourPaletteAlreadyExists(colourPalette.getName())) {
             return false;
         }
         this.subColourPalettes.add(colourPalette);
@@ -70,7 +76,7 @@ public class ColourPalette {
     //          remove given colour palette from collection of subColourPalettes, return true
     //          else, do nothing and return false
     public boolean deleteSubColourPalette(ColourPalette colourPalette) {
-        if (ifSubColourPaletteAlreadyExists(colourPalette)) {
+        if (ifSubColourPaletteAlreadyExists(colourPalette.getName())) {
             this.subColourPalettes.remove(colourPalette);
             numOfColourPalettes--;
             return true;
@@ -90,13 +96,34 @@ public class ColourPalette {
 
     // EFFECTS: returns true if current colour palette already has given colourPalette as sub colour palette,
     //          else returns false
-    public boolean ifSubColourPaletteAlreadyExists(ColourPalette colourPalette) {
+    public boolean ifSubColourPaletteAlreadyExists(String colourPalette) {
         for (ColourPalette cp: subColourPalettes) {
-            if (cp == colourPalette) {
+            if (cp.getName().equals(colourPalette)) {
                 return true;
             }
         }
         return false;
+    }
+
+    // EFFECTS: prints out all name of the colours in this colour palette
+    public void printAllColours() {
+        System.out.println("--COLOURS--");
+        for (Colour colour: colours) {
+            System.out.println("- " + colour.getName());
+        }
+    }
+
+    // EFFECTS: prints out all the names of the sub colour palettes in this colour palette
+    public void printAllColourPalettes() {
+        for (ColourPalette colourPalette: subColourPalettes) {
+            System.out.println("- " + colourPalette.getName());
+        }
+    }
+
+    // EFFECTS: prints out the number of sub colour palettes and colours in this colour palette
+    public void displayColourPaletteDetails() {
+        System.out.println(">> Number of sub colour palettes: " + this.numOfColourPalettes);
+        System.out.println(">> Number of colours: " + this.numOfColours);
     }
 
     // Getters and setters

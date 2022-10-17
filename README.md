@@ -54,11 +54,14 @@ That's why I search up references on my laptop instead.
 - As a user, I want to be able to delete and rename art folders
 - As a user, I want to be able to select multiple images from one folder and move them into a different folder
 - As a user, I want to be able to delete any reference image uploaded
-- As a user, I want to be able to create and name a colour palette
-- As a user, I want to be able to add multiple colours with specific hex/rgb values into a colour palette
-- As a user, I want to be able to add colour palettes within colour palettes
-- As a user, I want to be able to rename and delete a colour palette
-- As a user, I want to be able to change, delete, and add colours in a colour palette
+- As a user, I want to be able to create and name a colour palette (DONE)
+- As a user, I want to be able to add an arbitrary number of colours with specific hex values into a colour palette(DONE)
+- As a user, I want to be able to add an arbitrary number of sub-colour palettes within a non-sub colour palette (DONE)
+- As a user, I want to be able to rename a colour palette (DONE)
+- As a user, I want to be bale to delete a colour palette (DONE)
+- As a user, I want to be able to add colours in an existing colour palette (DONE)
+- As a user, I want to be able to delete colours in an existing colour palette (DONE)
+- As a user, I want to be able to delete sub-colour palettes in an existing colour palette (DONE)
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to select different images and colour palettes of my choosing,
 and pull them out to display into a separate window
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to extract exact hex and rbg values off a picture's pixel
