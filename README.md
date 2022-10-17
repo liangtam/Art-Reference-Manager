@@ -61,7 +61,7 @@ That's why I search up references on my laptop instead.
 - As a user, I want to be bale to delete a colour palette (DONE)
 - As a user, I want to be able to add colours in an existing colour palette (DONE)
 - As a user, I want to be able to delete colours in an existing colour palette (DONE)
-- As a user, I want to be able to rename colours in an existing colour paletee (TODO)
+- As a user, I want to be able to rename colours in an existing colour paletee (DONE)
 - As a user, I want to be able to delete sub-colour palettes in an existing colour palette (DONE)
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to select different images and colour palettes of my choosing,
 and pull them out to display into a separate window

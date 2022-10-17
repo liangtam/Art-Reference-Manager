@@ -16,7 +16,7 @@ public class Menu {
     // ----------------------------------MAIN MENU METHODS--------------------------------------
 
     // EFFECTS: displays all the menu prompts, such as questions and instructions, and
-    // processing user inputs
+    //          processing user inputs
     public void startMenu() {
         System.out.println("Welcome to Art Reference Manager! Creative application name, amirite?");
         System.out.println("-----------------------------------------------------------------------");
@@ -381,6 +381,11 @@ public class Menu {
 
     // EFFECTS: prints out all the names of the sub colour palettes in this colour palette
     public void printAllSubColourPalettes(ColourPalette cp) {
+        System.out.println("---SUB COLOUR PALETTES---");
+        if (cp.getSubColourPalettes().isEmpty()) {
+            System.out.println("There are no sub colour palettes. :(");
+            return;
+        }
         for (ColourPalette colourPalette: cp.getSubColourPalettes()) {
             System.out.println("- " + colourPalette.getName());
         }
