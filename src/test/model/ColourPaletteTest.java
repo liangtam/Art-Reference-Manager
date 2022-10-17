@@ -142,10 +142,13 @@ public class ColourPaletteTest {
 
     @Test
     public void testDeleteColourNonexistentColour() {
+        boolean delColour2Success = sunsetColourPalette.deleteColour(colour2.getName());
+        assertFalse(delColour2Success);
+        assertEquals(0, sunsetColourPalette.getNumOfColours());
         sunsetColourPalette.addColour(colour3);
 
-        boolean delColourSuccess = sunsetColourPalette.deleteColour(colour1.getName());
-        assertFalse(delColourSuccess);
+        boolean delColour1Success = sunsetColourPalette.deleteColour(colour1.getName());
+        assertFalse(delColour1Success);
 
         assertEquals(1, sunsetColourPalette.getNumOfColours());
         assertEquals(colour3, sunsetColourPalette.getColours().get(0));

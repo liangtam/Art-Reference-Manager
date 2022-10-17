@@ -23,7 +23,7 @@ public class Menu {
         displayMenuOptions();
     }
 
-    // EFFECTS: displays the most basic options to the user
+    // EFFECTS: displays the most basic main menu options to the user
     public void displayMenuOptions() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -55,8 +55,9 @@ public class Menu {
         }
     }
 
-    // MODIFIES: this, ColourPalette
-    // EFFECTS: Guides the user on how to create a colour palette
+    // MODIFIES: this
+    // EFFECTS: Guides the user on how to create a colour palette, and adds that palette to
+    //          collection of colour palettes
     public void processCreateColourPalette() {
         ColourPalette newColourPalette = createColourPalette();
 
@@ -68,7 +69,8 @@ public class Menu {
         }
     }
 
-    // EFFECTS: checks if the colour palette already exists
+    // EFFECTS: return true if the colour palette we want to add already exists,
+    //          else return false
     //          (does not check if it exists as a sub colour palette in another
     //          palette)
     public boolean colourPaletteAlreadyExists(String name) {
@@ -81,7 +83,8 @@ public class Menu {
         return false;
     }
 
-    // EFFECTS: guides the user on how to delete a colour palette
+    // MODIFIES: this
+    // EFFECTS: guides the user on how to delete a colour palette and deletes it if it exists
     public void processDeleteColourPalette() {
         boolean anyColors = printAllColourPalettes();
         Scanner scanner = new Scanner(System.in);
@@ -103,7 +106,7 @@ public class Menu {
     }
 
     // MODIFIES: ColourPalette
-    // EFFECTS: guides the user on how to rename a colour palette
+    // EFFECTS: guides the user on how to rename given colour palette, and renames its name to their input
     public void processRenameCP(ColourPalette cp) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Current name: " + cp.getName());
@@ -114,7 +117,8 @@ public class Menu {
         return;
     }
 
-    // EFFECTS: Guides the user on how to add colours to a colour palette
+    // EFFECTS: Guides the user on how to add colours to the given colour palette, and adds the colours to
+    //          the given colour palette
     public void processAddColours(ColourPalette colourPalette) {
         List<Colour> colours = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -185,7 +189,7 @@ public class Menu {
                     System.out.println("• Rename colour palette: 'renameCP'");
                     System.out.println("• To add a colour: 'addC'");
                     System.out.println("• To delete a colour: 'delC'");
-                    System.out.println("• To rename a colour: 'renameC'");
+                    System.out.println("• To edit a colour: 'editC'");
                     System.out.println("• To view all sub colour palettes within this palette: 'subCps'");
                     System.out.println("• To view all colours within this palette: 'c'");
                     System.out.println("• To return to palettes menu: 'back'");
@@ -208,7 +212,7 @@ public class Menu {
         return (!input.equalsIgnoreCase("delC") && !input.equalsIgnoreCase("renameCP")
             && !input.equalsIgnoreCase("addSubCP") && !input.equalsIgnoreCase("addC")
             && !input.equalsIgnoreCase("subCps") && !input.equalsIgnoreCase("delCP")
-            && !input.equalsIgnoreCase("c"));
+            && !input.equalsIgnoreCase("c") && !input.equalsIgnoreCase("editC"));
     }
 
     // EFFECTS: Does what user input commands to given colour palette
@@ -219,8 +223,12 @@ public class Menu {
             processRenameCP(cp);
         } else if (userInput.equalsIgnoreCase("addC")) {
             processAddColours(cp);
+        } else if (userInput.equalsIgnoreCase("editC")) {
+            processEditColour(cp);
         } else if (userInput.equalsIgnoreCase("subCps")) {
             manageSubColourPalettes(cp);
+        } else if (userInput.equalsIgnoreCase("c")) {
+            printAllColours(cp);
         } else {
             System.out.println("Invalid input.");
         }
@@ -233,12 +241,56 @@ public class Menu {
         printAllColours(cp);
         System.out.println("Please enter the name of the colour you'd like to delete from this palette.");
         String colourName = scanner.nextLine();
-        boolean deleteColourSucess = cp.deleteColour(colourName);
-        if (deleteColourSucess) {
+        boolean deleteColourSuccess = cp.deleteColour(colourName);
+        if (deleteColourSuccess) {
             System.out.println("Deleted " + colourName);
         } else {
             System.out.println("The colour does not exist.");
         }
+    }
+
+    // EFFECTS: guides user on how to rename or edit the hex of a colour in given colour palette
+    public void processEditColour(ColourPalette cp) {
+        Scanner scanner = new Scanner(System.in);
+        printAllColours(cp);
+        System.out.println("Which colour would you like to edit?");
+        String colorName = scanner.nextLine();
+        for (Colour colour: cp.getColours()) {
+            if (colour.getName().equals(colorName)) {
+                System.out.println("Type 'rename' to rename colour, 'editHex' to edit colour's hex");
+                String input = scanner.nextLine();
+                if (input.equalsIgnoreCase("rename")) {
+                    renameColour(colour);
+                } else if (input.equalsIgnoreCase("editHex")) {
+                    editColourHex(colour);
+                }
+                return;
+            }
+        }
+        System.out.println("This colour does not exist.");
+
+    }
+
+    // MODIFIES: Colour
+    // EFFECTS: changes given colour's name to new name
+    public void renameColour(Colour colour) {
+        System.out.println("Current name: " + colour.getName());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("New name:");
+        String newName = scanner.nextLine();
+        colour.setName(newName);
+        System.out.println("Successfully changed color name to " + colour.getName() + "!");
+    }
+
+    // MODIFIES: Colour
+    // EFFECTS: changes given colour's hex to new hex
+    public void editColourHex(Colour colour) {
+        System.out.println("Current hex: " + colour.getHex());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("New hex:");
+        String newHex = scanner.nextLine();
+        colour.setHex(newHex);
+        System.out.println("Successfully changed color name to " + colour.getHex() + "!");
     }
 
     // MODIFIES: ColourPalette
@@ -334,11 +386,11 @@ public class Menu {
         }
     }
 
-    // EFFECTS: prints out all name of the colours in this colour palette
+    // EFFECTS: prints out all the colours in this colour palette in formate - Name:Hex
     public void printAllColours(ColourPalette cp) {
         System.out.println("--COLOURS--");
         for (Colour colour: cp.getColours()) {
-            System.out.println("- " + colour.getName());
+            System.out.println("- " + colour.getName() + ":" + colour.getHex());
         }
     }
 
