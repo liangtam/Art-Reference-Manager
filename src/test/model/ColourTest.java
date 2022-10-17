@@ -26,4 +26,16 @@ class ColourTest {
         assertEquals(0, g);
         assertEquals(0, b);
     }
+
+    @Test
+    public void testSetHex() {
+        red.setHex("#FF2500");
+        assertEquals("#FF2500", red.getHex());
+    }
+
+    @Test
+    public void testSetName() {
+        red.setName("Warm red");
+        assertEquals("Warm red", red.getName());
+    }
 }

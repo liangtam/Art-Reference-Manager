@@ -125,6 +125,8 @@ public class ColourPalette {
         return this.numOfColours;
     }
 
+    // MODIFIES: this
+    // EFFECTS: Changes the name of current colour palette to given name
     public void setName(String name) {
         this.name = name;
     }

@@ -27,7 +27,7 @@ public class ColourPaletteTest {
 
     // tests for addColour
     @Test
-    public void testAddOneColour(){
+    public void testAddColourOneColour(){
         boolean addColourSuccess = sunsetColourPalette.addColour(colour1);
         int numOfColours = sunsetColourPalette.getNumOfColours();
 
@@ -38,7 +38,7 @@ public class ColourPaletteTest {
     }
 
     @Test
-    public void testAddSameColourMultipleTimes() {
+    public void testAddColourSameColourMultipleTimes() {
         boolean addColour2Success = sunsetColourPalette.addColour(colour2);
         boolean addColour2AgainSuccess = sunsetColourPalette.addColour(colour2);
 
@@ -53,7 +53,7 @@ public class ColourPaletteTest {
     }
 
     @Test
-    public void testAddThreeDifferentColours() {
+    public void testAddColourThreeDifferentColours() {
         boolean addColour1Success = sunsetColourPalette.addColour(colour1);
         boolean addColour2Success = sunsetColourPalette.addColour(colour2);
         boolean addColour3Success = sunsetColourPalette.addColour(colour3);
@@ -69,22 +69,9 @@ public class ColourPaletteTest {
         assertEquals(colour2, colours.get(1));
         assertEquals(colour3, colours.get(2));
     }
-
-    @Test
-    public void testDeleteAColour() {
-        sunsetColourPalette.addColour(colour1);
-        sunsetColourPalette.addColour(colour2);
-
-        boolean delColour1Success = sunsetColourPalette.deleteColour(colour1.getName());
-        assertTrue(delColour1Success);
-        int numOfColours = sunsetColourPalette.getNumOfColours();
-        assertEquals(1, numOfColours);
-        assertEquals(colour2, sunsetColourPalette.getColours().get(0));
-    }
-
     // tests for addColourPalette
     @Test
-    public void testAddOneColourPalette() {
+    public void testAddColourPaletteOneColourPalette() {
         boolean addSubColourPaletteSuccess = sunsetColourPalette.addSubColourPalette(oceanColourPalette);
         assertTrue(addSubColourPaletteSuccess);
         assertEquals(1, sunsetColourPalette.getNumOfColourPalettes());
@@ -92,7 +79,7 @@ public class ColourPaletteTest {
     }
 
     @Test
-    public void testAddMultipleDifferentColourPalettes(){
+    public void testAddColourPalettesMultipleDifferentPalettes(){
         boolean addSubColourPalette2 = sunsetColourPalette.addSubColourPalette(oceanColourPalette);
         boolean addSubColourPalette3 = sunsetColourPalette.addSubColourPalette(warmColourPalette);
 
@@ -105,7 +92,7 @@ public class ColourPaletteTest {
     }
 
     @Test
-    public void testAddSameColourPaletteMultipleTimes() {
+    public void testAddColourPaletteSamePaletteMultipleTimes() {
         boolean addSubColourPalette2 = sunsetColourPalette.addSubColourPalette(oceanColourPalette);
         boolean addSubColourPalette2Again = sunsetColourPalette.addSubColourPalette(oceanColourPalette);
 
@@ -116,16 +103,53 @@ public class ColourPaletteTest {
         assertTrue(sunsetColourPalette.getSubColourPalettes().contains(oceanColourPalette));
     }
 
+    // test for deleteSubColourPalette
     @Test
-    public void testDeleteAnExistingSubColourPalette() {
+    public void testDeleteSubColourPaletteExistingSubColourPalette() {
         sunsetColourPalette.addSubColourPalette(warmColourPalette);
         sunsetColourPalette.addSubColourPalette(oceanColourPalette);
 
         boolean delWarmColoursSuccess = sunsetColourPalette.deleteSubColourPalette(warmColourPalette);
         assertTrue(delWarmColoursSuccess);
+
         int numOfColourPalettes = sunsetColourPalette.getNumOfColourPalettes();
         assertEquals(1, numOfColourPalettes);
         assertEquals(oceanColourPalette, sunsetColourPalette.getSubColourPalettes().get(0));
+    }
+
+    @Test
+    public void testDeleteSubColourPaletteNonexistentSubColourPalette() {
+        sunsetColourPalette.addSubColourPalette(warmColourPalette);
+
+        boolean delOceanColourSuccess = sunsetColourPalette.deleteSubColourPalette(oceanColourPalette);
+        assertFalse(delOceanColourSuccess);
+        assertEquals(1, sunsetColourPalette.getNumOfColourPalettes());
+        assertTrue(sunsetColourPalette.getSubColourPalettes().contains(warmColourPalette));
+    }
+
+    // tests for deleteColour
+    @Test
+    public void testDeleteColourExistingColour() {
+        sunsetColourPalette.addColour(colour1);
+        sunsetColourPalette.addColour(colour2);
+
+        boolean delColour1Success = sunsetColourPalette.deleteColour(colour1.getName());
+        assertTrue(delColour1Success);
+        int numOfColours = sunsetColourPalette.getNumOfColours();
+        assertEquals(1, numOfColours);
+        assertEquals(colour2, sunsetColourPalette.getColours().get(0));
+    }
+
+    @Test
+    public void testDeleteColourNonexistentColour() {
+        sunsetColourPalette.addColour(colour3);
+
+        boolean delColourSuccess = sunsetColourPalette.deleteColour(colour1.getName());
+        assertFalse(delColourSuccess);
+
+        assertEquals(1, sunsetColourPalette.getNumOfColours());
+        assertEquals(colour3, sunsetColourPalette.getColours().get(0));
+
     }
 
     // other tests

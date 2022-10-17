@@ -13,6 +13,8 @@ public class Menu {
         colourPalettes = new ArrayList<>();
     }
 
+    // ----------------------------------MAIN MENU METHODS--------------------------------------
+
     // EFFECTS: displays all the menu prompts, such as questions and instructions, and
     // processing user inputs
     public void startMenu() {
@@ -53,8 +55,6 @@ public class Menu {
         }
     }
 
-    // --------------COLOUR PALETTE STUFF---------------
-
     // MODIFIES: this, ColourPalette
     // EFFECTS: Guides the user on how to create a colour palette
     public void processCreateColourPalette() {
@@ -68,7 +68,7 @@ public class Menu {
         }
     }
 
-    // EFFECTS: checks if the colour palette already exists in this menu
+    // EFFECTS: checks if the colour palette already exists
     //          (does not check if it exists as a sub colour palette in another
     //          palette)
     public boolean colourPaletteAlreadyExists(String name) {
@@ -171,6 +171,7 @@ public class Menu {
         }
     }
 
+    // ------------------------------SINGULAR COLOUR PALETTE MENU---------------------------------
     @SuppressWarnings("methodlength")
     // EFFECTS: Displays options for user on what they can do to the colour palette
     public void displayOptionsForOneColourPalette(String colourPaletteName) {
@@ -226,7 +227,7 @@ public class Menu {
     }
 
     // MODIFIES: ColourPalette
-    // EFFECTS: deletes colour
+    // EFFECTS: deletes colour from given colour palette, cp
     public void processDeleteColour(ColourPalette cp) {
         Scanner scanner = new Scanner(System.in);
         printAllColours(cp);
@@ -241,7 +242,7 @@ public class Menu {
     }
 
     // MODIFIES: ColourPalette
-    // EFFECTS: creates a new sub colour palette in given colour palette
+    // EFFECTS: creates a new sub colour palette in given colour palette, cp
     public void processAddNewSubColourPalette(ColourPalette cp) {
         ColourPalette subColourPalette = createColourPalette();
         if (subColourPalette != null) {
@@ -251,6 +252,7 @@ public class Menu {
         System.out.println("-------------------------------------------------------------------------------------");
     }
 
+    // MODIFIES: ColourPalette
     // EFFECTS: guides the user through deleting a sub colour palette from a colour palette, and deletes it
     public void processDeleteSubColourPalette(ColourPalette cp) {
         if (cp.getSubColourPalettes().isEmpty()) {
@@ -272,28 +274,8 @@ public class Menu {
 
     }
 
-    // EFFECTS: prints out the number of sub colour palettes and colours in this colour palette
-    public void displayColourPaletteDetails(ColourPalette cp) {
-        System.out.println(">> Number of sub colour palettes: " + cp.getNumOfColourPalettes());
-        System.out.println(">> Number of colours: " + cp.getNumOfColours());
-    }
-
-    // EFFECTS: prints out all the names of the sub colour palettes in this colour palette
-    public void printAllSubColourPalettes(ColourPalette cp) {
-        for (ColourPalette colourPalette: cp.getSubColourPalettes()) {
-            System.out.println("- " + colourPalette.getName());
-        }
-    }
-
-
-    // EFFECTS: prints out all name of the colours in this colour palette
-    public void printAllColours(ColourPalette cp) {
-        System.out.println("--COLOURS--");
-        for (Colour colour: cp.getColours()) {
-            System.out.println("- " + colour.getName());
-        }
-    }
-
+    // EFFECTS: Gives options to the user on what they can do with the sub colour palettes of given palette, cp.
+    //          Prints all the sub colour palettes of cp.
     public void manageSubColourPalettes(ColourPalette cp) {
         Scanner scan = new Scanner(System.in);
         while (true) {
@@ -335,6 +317,29 @@ public class Menu {
         }
 
         return colourPalette;
+    }
+
+    // ----------------------------------PRINT METHODS--------------------------------------
+
+    // EFFECTS: prints out the number of sub colour palettes and colours in this colour palette
+    public void displayColourPaletteDetails(ColourPalette cp) {
+        System.out.println(">> Number of sub colour palettes: " + cp.getNumOfColourPalettes());
+        System.out.println(">> Number of colours: " + cp.getNumOfColours());
+    }
+
+    // EFFECTS: prints out all the names of the sub colour palettes in this colour palette
+    public void printAllSubColourPalettes(ColourPalette cp) {
+        for (ColourPalette colourPalette: cp.getSubColourPalettes()) {
+            System.out.println("- " + colourPalette.getName());
+        }
+    }
+
+    // EFFECTS: prints out all name of the colours in this colour palette
+    public void printAllColours(ColourPalette cp) {
+        System.out.println("--COLOURS--");
+        for (Colour colour: cp.getColours()) {
+            System.out.println("- " + colour.getName());
+        }
     }
 
 
