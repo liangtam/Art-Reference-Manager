@@ -39,18 +39,15 @@ public class ColourPalette {
     //          else, do nothing and return false
     public boolean deleteColour(String colour) {
         if (colours.isEmpty()) {
-            System.out.println("There are currently no colours in this palette.");
             return false;
         }
         for (Colour c: colours) {
             if (c.getName().equals(colour)) {
                 this.colours.remove(c);
                 this.numOfColours--;
-                System.out.println("Deleted " + c.getName());
                 return true;
             }
         }
-        System.out.println("The colour does not exist.");
         return false;
     }
 
@@ -103,27 +100,6 @@ public class ColourPalette {
             }
         }
         return false;
-    }
-
-    // EFFECTS: prints out all name of the colours in this colour palette
-    public void printAllColours() {
-        System.out.println("--COLOURS--");
-        for (Colour colour: colours) {
-            System.out.println("- " + colour.getName());
-        }
-    }
-
-    // EFFECTS: prints out all the names of the sub colour palettes in this colour palette
-    public void printAllColourPalettes() {
-        for (ColourPalette colourPalette: subColourPalettes) {
-            System.out.println("- " + colourPalette.getName());
-        }
-    }
-
-    // EFFECTS: prints out the number of sub colour palettes and colours in this colour palette
-    public void displayColourPaletteDetails() {
-        System.out.println(">> Number of sub colour palettes: " + this.numOfColourPalettes);
-        System.out.println(">> Number of colours: " + this.numOfColours);
     }
 
     // Getters and setters

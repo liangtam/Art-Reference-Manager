@@ -139,4 +139,10 @@ public class ColourPaletteTest {
         assertTrue(warmCPExists);
         assertFalse(oceanCPExists);
     }
+
+    @Test
+    public void testSetName() {
+        sunsetColourPalette.setName("Sunset but cooler");
+        assertEquals("Sunset but cooler", sunsetColourPalette.getName());
+    }
 }

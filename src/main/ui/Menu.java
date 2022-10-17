@@ -6,7 +6,6 @@ import java.util.*;
 
 public class Menu {
     private List<ColourPalette> colourPalettes;
-    private Scanner scanner = new Scanner(System.in);
     // private List<ReferenceFolder> referenceFolders; to be added in later phase with GUI
 
     // EFFECTS: creates a menu with no colour palettes created
@@ -24,6 +23,7 @@ public class Menu {
 
     // EFFECTS: displays the most basic options to the user
     public void displayMenuOptions() {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("-------|| MAIN MENU ||-------");
             System.out.println("Please select from the following options:");
@@ -57,7 +57,6 @@ public class Menu {
 
     // MODIFIES: this, ColourPalette
     // EFFECTS: Guides the user on how to create a colour palette
-    @SuppressWarnings("methodlength")
     public void processCreateColourPalette() {
         ColourPalette newColourPalette = createColourPalette();
 
@@ -85,15 +84,16 @@ public class Menu {
     // EFFECTS: guides the user on how to delete a colour palette
     public void processDeleteColourPalette() {
         boolean anyColors = printAllColourPalettes();
+        Scanner scanner = new Scanner(System.in);
         if (!anyColors) {
             return;
         }
         System.out.println("Name of palette to delete:");
         String name = scanner.next();
         if (colourPaletteAlreadyExists(name)) {
-            for (ColourPalette cp: colourPalettes) {
+            for (ColourPalette cp: this.colourPalettes) {
                 if (cp.getName().equals(name)) {
-                    colourPalettes.remove(cp);
+                    this.colourPalettes.remove(cp);
                     break;
                 }
             }
@@ -142,6 +142,7 @@ public class Menu {
 
     // EFFECTS: display all colour palettes' names
     public void displayColourPalettesMenu() {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("For further options on any of the colour palettes, enter the name of the palette.");
             System.out.println("Enter 'mm' to return to main menu.");
@@ -178,11 +179,12 @@ public class Menu {
             if (colourPaletteName.equalsIgnoreCase(cp.getName())) {
                 while (true) {
                     System.out.println("---COLOUR PALETTE: " + cp.getName().toUpperCase());
-                    cp.displayColourPaletteDetails();
+                    displayColourPaletteDetails(cp);
                     System.out.println("---OPTIONS---");
                     System.out.println("• Rename colour palette: 'renameCP'");
                     System.out.println("• To add a colour: 'addC'");
                     System.out.println("• To delete a colour: 'delC'");
+                    System.out.println("• To rename a colour: 'renameC'");
                     System.out.println("• To view all sub colour palettes within this palette: 'subCps'");
                     System.out.println("• To view all colours within this palette: 'c'");
                     System.out.println("• To return to palettes menu: 'back'");
@@ -227,10 +229,15 @@ public class Menu {
     // EFFECTS: deletes colour
     public void processDeleteColour(ColourPalette cp) {
         Scanner scanner = new Scanner(System.in);
-        cp.printAllColours();
+        printAllColours(cp);
         System.out.println("Please enter the name of the colour you'd like to delete from this palette.");
         String colourName = scanner.nextLine();
-        cp.deleteColour(colourName);
+        boolean deleteColourSucess = cp.deleteColour(colourName);
+        if (deleteColourSucess) {
+            System.out.println("Deleted " + colourName);
+        } else {
+            System.out.println("The colour does not exist.");
+        }
     }
 
     // MODIFIES: ColourPalette
@@ -265,10 +272,32 @@ public class Menu {
 
     }
 
+    // EFFECTS: prints out the number of sub colour palettes and colours in this colour palette
+    public void displayColourPaletteDetails(ColourPalette cp) {
+        System.out.println(">> Number of sub colour palettes: " + cp.getNumOfColourPalettes());
+        System.out.println(">> Number of colours: " + cp.getNumOfColours());
+    }
+
+    // EFFECTS: prints out all the names of the sub colour palettes in this colour palette
+    public void printAllSubColourPalettes(ColourPalette cp) {
+        for (ColourPalette colourPalette: cp.getSubColourPalettes()) {
+            System.out.println("- " + colourPalette.getName());
+        }
+    }
+
+
+    // EFFECTS: prints out all name of the colours in this colour palette
+    public void printAllColours(ColourPalette cp) {
+        System.out.println("--COLOURS--");
+        for (Colour colour: cp.getColours()) {
+            System.out.println("- " + colour.getName());
+        }
+    }
+
     public void manageSubColourPalettes(ColourPalette cp) {
         Scanner scan = new Scanner(System.in);
         while (true) {
-            cp.printAllColourPalettes();
+            printAllSubColourPalettes(cp);
             System.out.println("• To add a sub colour palette: 'addSubCP'");
             System.out.println("• To add a sub colour palette: 'delSubCP'");
             System.out.println("To go back to main colour palette menu: 'back'");
