@@ -16,7 +16,7 @@ public class Colour {
     }
 
     // REQUIRES: given hex must be a valid hex code (in format #XXXXXX,
-    //           where X is between 0 and 9 or A to F)
+    //           where X is between 0 and 9 or A to F, capitals do not matter)
     // MODIFIES: this
     // EFFECTS: creates a visual colour representation of the given hex code
 
@@ -36,22 +36,29 @@ public class Colour {
         this.colorVisual = new Color(r, g, b);
     }
 
+    // EFFECTS: returns this colour's hex code
     public String getHex() {
         return this.hex;
     }
 
+    // EFFECTS: returns this colour's name
     public String getName() {
         return this.name;
     }
 
+    // EFFECTS: returns this colour's color visual
     public Color getColourVisual() {
         return this.colorVisual;
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes this colour's hex string to given hex
     public void setHex(String hex) {
         this.hex = hex;
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes this colour's name to given name
     public void setName(String name) {
         this.name = name;
     }
