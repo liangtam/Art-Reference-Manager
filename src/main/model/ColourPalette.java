@@ -102,15 +102,18 @@ public class ColourPalette {
         return false;
     }
 
-    // Getters and setters
+    // Getters and Setters
+    // EFFECTS: returns the collection of colours in this colour palette
     public ArrayList<Colour> getColours() {
         return this.colours;
     }
 
+    // EFFECTS: returns the collection of sub colour palettes in this colour palette
     public ArrayList<ColourPalette> getSubColourPalettes() {
         return this.subColourPalettes;
     }
 
+    // EFFECTS: returns name of this colour palette
     public String getName() {
         return this.name;
     }

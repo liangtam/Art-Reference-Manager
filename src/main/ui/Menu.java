@@ -48,7 +48,6 @@ public class Menu {
         } else if (command.equalsIgnoreCase("delCP")) {
             processDeleteColourPalette();
         } else if (command.equalsIgnoreCase("cps")) {
-            printAllColourPalettes();
             displayColourPalettesMenu();
         } else {
             System.out.println("Invalid response :(");
@@ -148,6 +147,7 @@ public class Menu {
     public void displayColourPalettesMenu() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
+            printAllColourPalettes();
             System.out.println("For further options on any of the colour palettes, enter the name of the palette.");
             System.out.println("Enter 'mm' to return to main menu.");
             String userInput = scanner.next();
