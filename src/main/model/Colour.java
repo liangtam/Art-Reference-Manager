@@ -1,8 +1,11 @@
 package model;
 
 import java.awt.*;
+import org.json.JSONObject;
+import persistence.Writable;
 
-public class Colour {
+// Represents a colour with hex code, name, and colour visual
+public class Colour implements Writable {
     private String hex;
     private String name;
     private Color colorVisual;
@@ -61,6 +64,14 @@ public class Colour {
     // EFFECTS: changes this colour's name to given name
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("hex", this.hex);
+        return json;
     }
 
 }

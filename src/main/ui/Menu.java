@@ -1,16 +1,25 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class Menu {
     private List<ColourPalette> colourPalettes;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/colourPalettes.json";
     // private List<ReferenceFolder> referenceFolders; to be added in later phase with GUI
 
     // EFFECTS: creates a menu with no colour palettes created
     public Menu() {
         colourPalettes = new ArrayList<>();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // ----------------------------------MAIN MENU METHODS--------------------------------------
@@ -30,8 +39,10 @@ public class Menu {
             System.out.println("-------|| MAIN MENU ||-------");
             System.out.println("Please select from the following options:");
             System.out.println("• Add a new colour palette: type 'addCP'");
-            System.out.println("• Delete an existing colour in an existing colour palette: type 'delCP'");
+            System.out.println("• Delete an existing colour palette: type 'delCP'");
             System.out.println("• View all colour palettes: 'cps'");
+            System.out.println("Save: s");
+            System.out.println("Load: l");
             System.out.println("To quit the program: 'quit'");
             String command = scanner.next();
             if (command.equalsIgnoreCase("quit")) {
@@ -49,6 +60,10 @@ public class Menu {
             processDeleteColourPalette();
         } else if (command.equalsIgnoreCase("cps")) {
             displayColourPalettesMenu();
+        } else if (command.equalsIgnoreCase("s")) {
+            saveAllColourPalettes();
+        } else if (command.equalsIgnoreCase("l")) {
+            loadColourPalettes();
         } else {
             System.out.println("Invalid response :(");
         }
@@ -396,6 +411,31 @@ public class Menu {
         System.out.println("--COLOURS--");
         for (Colour colour: cp.getColours()) {
             System.out.println("- " + colour.getName() + ":" + colour.getHex());
+        }
+    }
+
+    // ---------- DATA PERSISTENCE STUFF --------------
+
+    //  EFFECTS: Saves all the current created colour palettes to file
+    private void saveAllColourPalettes() {
+        try {
+            jsonWriter.open();
+            jsonWriter.writeListOfColourPalettes(colourPalettes);
+            jsonWriter.close();
+            System.out.println("Saved all colour palettes to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not save to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads list of colour palettes from file
+    private void loadColourPalettes() {
+        try {
+            colourPalettes = jsonReader.read();
+            System.out.println("Loaded all the colour palettes from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Could not save to file: " + JSON_STORE);
         }
     }
 

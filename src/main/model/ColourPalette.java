@@ -1,8 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class ColourPalette {
+// Represents a collection of colours--i.e. a colour scheme.
+public class ColourPalette implements Writable {
     private ArrayList<Colour> colours;
     private ArrayList<ColourPalette> subColourPalettes;
     private String name;
@@ -134,4 +139,28 @@ public class ColourPalette {
         this.name = name;
     }
 
+    // Citation: https://stackoverflow.com/questions/18983185/how-to-create-correct-jsonarray-in-java-using-jsonobject
+    //           ^ Used to learn how to use JSONArray using JSONObject
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        JSONArray arrayOfColours = new JSONArray();
+        JSONArray arrayOfSubColourPalettes = new JSONArray();
+
+        for (Colour c: this.colours) {
+            JSONObject colourToJson = c.toJson();
+            arrayOfColours.put(colourToJson);
+        }
+
+        for (ColourPalette cp: this.subColourPalettes) {
+            JSONObject subPaletteToJson = cp.toJson();
+            arrayOfSubColourPalettes.put(subPaletteToJson);
+
+        }
+        json.put("paletteName", this.name);
+        json.put("listOfColours", arrayOfColours);
+        json.put("listOfSubColourPalettes", arrayOfSubColourPalettes);
+
+        return json;
+    }
 }
