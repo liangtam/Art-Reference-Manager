@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -173,9 +175,48 @@ public class ColourPaletteTest {
         assertEquals("Sunset but cooler", sunsetColourPalette.getName());
     }
 
-    // JSON tests
+    // toJson tests
+    // Citation: https://stackoverflow.com/questions/9268099/json-array-get-length
+    //           ^ used to learn how to get size of JSONArray
     @Test
-    public void testToJson() {
+    public void testToJsonNoSubColourPalettesNoColour() {
+        JSONObject sunsetJsonObj = sunsetColourPalette.toJson();
+        assertEquals("Sunset Colours", sunsetJsonObj.get("paletteName"));
+        assertEquals(0, sunsetJsonObj.getJSONArray("listOfSubColourPalettes").length());
+        assertEquals(0, sunsetJsonObj.getJSONArray("listOfColours").length());
+    }
+
+    @Test
+    public void testToJsonWithSubColourPalettes() {
+        sunsetColourPalette.addSubColourPalette(warmColourPalette);
+
+        JSONObject sunsetJsonObj = sunsetColourPalette.toJson();
+        assertEquals("Sunset Colours", sunsetJsonObj.get("paletteName"));
+        assertEquals(1, sunsetJsonObj.getJSONArray("listOfSubColourPalettes").length());
+
+        JSONObject warmJsonObj = (JSONObject) sunsetJsonObj.getJSONArray("listOfSubColourPalettes").get(0);
+        assertEquals("Warm Colours", warmJsonObj.get("paletteName"));
+        assertEquals(0, sunsetJsonObj.getJSONArray("listOfColours").length());
+        assertEquals(0, warmJsonObj.getJSONArray("listOfSubColourPalettes").length());
+        assertEquals(0, warmJsonObj.getJSONArray("listOfColours").length());
+    }
+
+    @Test
+    public void testToJsonWithColours() {
+        sunsetColourPalette.addColour(colour1);
+        sunsetColourPalette.addColour(colour2);
+        JSONObject sunsetJsonObj = sunsetColourPalette.toJson();
+        JSONArray arrayOfColours = sunsetJsonObj.getJSONArray("listOfColours");
+        JSONObject colour1InJson = (JSONObject) arrayOfColours.get(0);
+        JSONObject colour2InJson = (JSONObject) arrayOfColours.get(1);
+
+        assertEquals(2, arrayOfColours.length());
+        assertEquals(0, sunsetJsonObj.getJSONArray("listOfSubColourPalettes").length());
+        assertEquals("Red", colour1InJson.get("name"));
+        assertEquals("Green", colour2InJson.get("name"));
+        assertEquals("#FF0000", colour1InJson.get("hex"));
+        assertEquals("#00FF00", colour2InJson.get("hex"));
 
     }
+
 }

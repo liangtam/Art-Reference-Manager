@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +38,13 @@ class ColourTest {
     public void testSetName() {
         red.setName("Warm red");
         assertEquals("Warm red", red.getName());
+    }
+
+    @Test
+    public void testToJson() {
+        JSONObject redJson = red.toJson();
+        assertEquals("Red", redJson.get("name"));
+        assertEquals("#FF0000", redJson.get("hex"));
+
     }
 }
