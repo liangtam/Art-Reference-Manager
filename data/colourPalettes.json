@@ -1,5 +1,31 @@
-[{
-    "listOfSubColourPalettes": [],
-    "paletteName": "sunset",
-    "listOfColours": []
-}]
+[
+     {
+          "listOfSubColourPalettes": [{
+               "listOfSubColourPalettes": [],
+               "paletteName": "warm",
+               "listOfColours": [{
+                    "name": "white",
+                    "hex": "#000000"
+               }]
+          }],
+          "paletteName": "sunset",
+          "listOfColours": [
+               {
+                    "name": "red",
+                    "hex": "#ff0000"
+               },
+               {
+                    "name": "yellow",
+                    "hex": "#ff2500"
+               }
+          ]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "Ocean",
+          "listOfColours": [{
+               "name": "Blue",
+               "hex": "#0000FF"
+          }]
+     }
+]

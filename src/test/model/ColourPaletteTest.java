@@ -172,4 +172,10 @@ public class ColourPaletteTest {
         sunsetColourPalette.setName("Sunset but cooler");
         assertEquals("Sunset but cooler", sunsetColourPalette.getName());
     }
+
+    // JSON tests
+    @Test
+    public void testToJson() {
+
+    }
 }

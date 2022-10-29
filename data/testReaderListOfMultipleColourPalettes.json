@@ -1,0 +1,31 @@
+[
+  {
+    "listOfSubColourPalettes": [{
+      "listOfSubColourPalettes": [],
+      "paletteName": "Sky",
+      "listOfColours": [{
+        "name": "White",
+        "hex": "#000000"
+      }]
+    }],
+    "paletteName": "Sunset",
+    "listOfColours": [
+      {
+        "name": "Red",
+        "hex": "#FF0000"
+      },
+      {
+        "name": "Red Orange",
+        "hex": "#FF2500"
+      }
+    ]
+  },
+  {
+    "listOfSubColourPalettes": [],
+    "paletteName": "Ocean",
+    "listOfColours": [{
+      "name": "Blue",
+      "hex": "#0000FF"
+    }]
+  }
+]

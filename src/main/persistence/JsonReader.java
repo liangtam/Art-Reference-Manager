@@ -24,7 +24,7 @@ public class JsonReader {
     private String readFile(String sourceFile) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines( Paths.get(sourceFile), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(sourceFile), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -76,7 +76,6 @@ public class JsonReader {
             // add the JSONObject as a colour to the ColourPalette object
             addColour(cp, colourInJson);
         }
-
     }
 
     // EFFECTS: parses subColourPalettes from the given JSONObject and adds it to the given colour palette
@@ -102,6 +101,8 @@ public class JsonReader {
         String name = jsonObject.getString("paletteName");
         ColourPalette subCP = new ColourPalette(name);
         addColours(subCP, jsonObject);
+        addSubColourPalettes(subCP, jsonObject);
+        cp.addSubColourPalette(subCP);
     }
 
 
