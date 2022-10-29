@@ -8,6 +8,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
+// Tests for the methods in JsonReader class
 public class JsonReaderTest extends JsonTest {
 
     @Test

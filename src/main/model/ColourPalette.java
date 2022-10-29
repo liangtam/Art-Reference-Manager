@@ -141,6 +141,7 @@ public class ColourPalette implements Writable {
 
     // Citation: https://stackoverflow.com/questions/18983185/how-to-create-correct-jsonarray-in-java-using-jsonobject
     //           ^ Used to learn how to use JSONArray using JSONObject
+    // EFFECTS: turns this ColourPalette object into a JSON object and returns it
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

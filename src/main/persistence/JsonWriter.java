@@ -6,11 +6,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-// Represents a writer that writes JSON representation of list of colours to file
+// Represents a writer that writes JSON to a JSON file
 public class JsonWriter {
     private static final int TAB = 5;
     private PrintWriter writer;

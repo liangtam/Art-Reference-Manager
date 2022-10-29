@@ -67,7 +67,5 @@ That's why I search up references on my laptop instead.
 and pull them out to display into a separate window
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to extract exact hex and rbg values off a picture's pixel
 ## DATA PERSISTENCE USER STORIES
-- As a user, I want to be able to save my colour palettes, the colours and sub-colour palettes in my colour palette, reference folders 
-and reference images within the reference folders as I create them (no separate save button needed for everything)
-- As a user, I want to be able to load all the colour palettes,  the colours and sub-colour palettes in my colour palette, reference folders
-  and reference images within the reference folders I've saved when I start up the application
+- As a user, I want to be able to save all the colour palettes I've created, including the colours and sub-colour palettes in each colour palette when I enter "s"
+- As a user, I want to be able to load all the saved colour palettes, including the colours and sub-colour palettes in each colour palette when I enter "l"

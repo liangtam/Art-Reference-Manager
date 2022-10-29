@@ -8,12 +8,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
+// Represents the UI the user interacts with to add colour palettes (and later, reference images in phase 3)
 public class Menu {
     private List<ColourPalette> colourPalettes;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/colourPalettes.json";
-    // private List<ReferenceFolder> referenceFolders; to be added in later phase with GUI
+    // private List<ReferenceFolder> referenceFolders; to be added in later phase 3
 
     // EFFECTS: creates a menu with no colour palettes created
     public Menu() {

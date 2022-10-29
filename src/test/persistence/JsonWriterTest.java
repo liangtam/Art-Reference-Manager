@@ -8,11 +8,12 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import model.*;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// Tests for the methods in JsonWriter class
 public class JsonWriterTest extends JsonTest{
     //the strategy in designing tests for the JsonWriter is to
     //write data to a file and then use the reader to read it back in and check that we

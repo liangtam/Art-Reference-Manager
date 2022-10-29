@@ -8,6 +8,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for the methods in Colour class
 class ColourTest {
     private Colour red;
 

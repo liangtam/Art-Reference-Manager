@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for the methods in ColourPalette class
 public class ColourPaletteTest {
     private Colour colour1;
     private Colour colour2;
