@@ -85,7 +85,6 @@ public class JsonWriterTest extends JsonTest{
             Colour blue = new Colour("Blue", "#0000FF");
             Colour redOrange = new Colour("Red Orange", "#FF2500");
 
-
             subCP1.addColour(white);
             cp1.addSubColourPalette(subCP1);
             cp1.addColour(red);
