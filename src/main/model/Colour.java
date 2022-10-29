@@ -66,6 +66,7 @@ public class Colour implements Writable {
         this.name = name;
     }
 
+    // **based on JsonSerializationDemo project**
     // EFFECTS: turns this Colour object into a JSON object and returns it
     @Override
     public JSONObject toJson() {

@@ -202,6 +202,7 @@ public class ColourPaletteTest {
         assertEquals(0, warmJsonObj.getJSONArray("listOfColours").length());
     }
 
+    // **based on JsonSerializationDemo project**
     @Test
     public void testToJsonWithColours() {
         sunsetColourPalette.addColour(colour1);

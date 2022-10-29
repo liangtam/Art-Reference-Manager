@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// **heavily based on JsonSerializationDemo project**
 // Tests for the methods in JsonWriter class
 public class JsonWriterTest extends JsonTest{
     //the strategy in designing tests for the JsonWriter is to

@@ -2,13 +2,13 @@
      {
           "listOfSubColourPalettes": [{
                "listOfSubColourPalettes": [],
-               "paletteName": "warm",
+               "paletteName": "Blue",
                "listOfColours": [{
-                    "name": "white",
-                    "hex": "#000000"
+                    "name": "blue",
+                    "hex": "#0000FF"
                }]
           }],
-          "paletteName": "sunset",
+          "paletteName": "Sunset",
           "listOfColours": [
                {
                     "name": "red",
@@ -26,6 +26,14 @@
           "listOfColours": [{
                "name": "Blue",
                "hex": "#0000FF"
+          }]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "Warm",
+          "listOfColours": [{
+               "name": "Red",
+               "hex": "#FF0000"
           }]
      }
 ]

@@ -6,6 +6,8 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// **based on JsonSerializationDemo project**
+
 // Used to check the accuracy of the fields of a Colour and fields of a ColourPalette
 public class JsonTest {
     protected void checkColour(String name, String hex, Color color, Colour colour) {

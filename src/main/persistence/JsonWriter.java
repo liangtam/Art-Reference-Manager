@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
+// **heavily based on JsonSerializationDemo project**
 // Represents a writer that writes JSON to a JSON file
 public class JsonWriter {
     private static final int TAB = 5;
