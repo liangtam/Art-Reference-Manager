@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 // Represents a reference image
-public class ReferenceImage {
+public class ReferenceImage implements Writable {
     private String name;
     private Image image;
 
@@ -45,6 +48,16 @@ public class ReferenceImage {
     // EFFECTS: sets the name of this reference image to given name
     public void setName(String newName) {
         this.name = newName;
+    }
+
+    // **based on JsonSerializationDemo project**
+    // EFFECTS: turns this ReferenceImage object into a JSON object and returns it
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("imageName", this.name);
+        json.put("image", this.image);
+        return json;
     }
 }
 
