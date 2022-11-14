@@ -31,7 +31,7 @@ public class InitialFrame extends JFrame {
                 if (e.getSource() == loadButton) {
 
                     frame.dispose();
-                    MainFrame main = new MainFrame();
+                    new MainFrame();
                 }
             }
         });
