@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 
 public class InitialFrame extends JFrame {
 
+
     @SuppressWarnings("methodlength")
+
     InitialFrame() {
         JFrame frame = new JFrame();
 
@@ -32,6 +34,8 @@ public class InitialFrame extends JFrame {
 
                     frame.dispose();
                     new MainFrame();
+                    MainFrame main = new MainFrame();
+
                 }
             }
         });
