@@ -12,6 +12,7 @@ public class InitialFrame extends JFrame {
 
     InitialFrame() {
         JFrame frame = new JFrame();
+        System.out.println("hi");
 
         ImageIcon icon = new ImageIcon("src/main/resources/artref-icon.png");
         ImageIcon backgroundImage = new ImageIcon("src/main/resources/artref-bg.png");

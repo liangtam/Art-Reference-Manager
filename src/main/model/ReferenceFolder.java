@@ -102,15 +102,6 @@ public class ReferenceFolder implements Writable {
         return false;
     }
 
-
-
-    public void printAllReferenceImageNames() {
-        for (int i = 0; i < refImages.size(); i++) {
-            System.out.println("[ " + i + " ]" + refImages.get(i).getName());
-        }
-    }
-
-
     // Getters and setters
     // EFFECTS: returns the name of the reference folder
     public String getFolderName() {
