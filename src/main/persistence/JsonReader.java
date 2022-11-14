@@ -3,7 +3,6 @@ package persistence;
 import model.Colour;
 import model.ColourPalette;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.nio.charset.StandardCharsets;
@@ -106,7 +105,5 @@ public class JsonReader {
         addSubColourPalettes(subCP, jsonObject);
         cp.addSubColourPalette(subCP);
     }
-
-
 
 }

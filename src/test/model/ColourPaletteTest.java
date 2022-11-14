@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.CurrentPaletteException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
@@ -106,6 +107,16 @@ public class ColourPaletteTest {
         assertTrue(sunsetColourPalette.getSubColourPalettes().contains(oceanColourPalette));
     }
 
+    @Test
+    public void testAddColourPaletteCurrentPalette() {
+        try {
+            sunsetColourPalette.addSubColourPalette(sunsetColourPalette);
+            fail("Shouldn't have gotten to this line! CurrentPaletteException expected.");
+        } catch (CurrentPaletteException e) {
+            // pass!
+        }
+    }
+
     // test for deleteSubColourPalette
     @Test
     public void testDeleteSubColourPaletteExistingSubColourPalette() {
@@ -130,6 +141,15 @@ public class ColourPaletteTest {
         assertTrue(sunsetColourPalette.getSubColourPalettes().contains(warmColourPalette));
     }
 
+    @Test
+    public void testDeleteSubColourPaletteCurrentPalette() {
+        try {
+            sunsetColourPalette.deleteSubColourPalette(sunsetColourPalette);
+            fail("Shouldn't have gotten to this line!");
+        } catch (CurrentPaletteException e) {
+            // pass!
+        }
+    }
     // tests for deleteColour
     @Test
     public void testDeleteColourExistingColour() {
@@ -148,6 +168,7 @@ public class ColourPaletteTest {
         boolean delColour2Success = sunsetColourPalette.deleteColour(colour2.getName());
         assertFalse(delColour2Success);
         assertEquals(0, sunsetColourPalette.getNumOfColours());
+
         sunsetColourPalette.addColour(colour3);
 
         boolean delColour1Success = sunsetColourPalette.deleteColour(colour1.getName());
@@ -156,24 +177,6 @@ public class ColourPaletteTest {
         assertEquals(1, sunsetColourPalette.getNumOfColours());
         assertEquals(colour3, sunsetColourPalette.getColours().get(0));
 
-    }
-
-    // other tests
-    @Test
-    public void testIfSubColourPaletteAlreadyExists() {
-        sunsetColourPalette.addSubColourPalette(warmColourPalette);
-
-        boolean warmCPExists = sunsetColourPalette.ifSubColourPaletteAlreadyExists(warmColourPalette.getName());
-        boolean oceanCPExists = sunsetColourPalette.ifSubColourPaletteAlreadyExists(oceanColourPalette.getName());
-
-        assertTrue(warmCPExists);
-        assertFalse(oceanCPExists);
-    }
-
-    @Test
-    public void testSetName() {
-        sunsetColourPalette.setName("Sunset but cooler");
-        assertEquals("Sunset but cooler", sunsetColourPalette.getName());
     }
 
     // toJson tests
@@ -219,6 +222,24 @@ public class ColourPaletteTest {
         assertEquals("#FF0000", colour1InJson.get("hex"));
         assertEquals("#00FF00", colour2InJson.get("hex"));
 
+    }
+
+    // other tests
+    @Test
+    public void testIfSubColourPaletteAlreadyExists() {
+        sunsetColourPalette.addSubColourPalette(warmColourPalette);
+
+        boolean warmCPExists = sunsetColourPalette.ifSubColourPaletteAlreadyExists(warmColourPalette);
+        boolean oceanCPExists = sunsetColourPalette.ifSubColourPaletteAlreadyExists(oceanColourPalette);
+
+        assertTrue(warmCPExists);
+        assertFalse(oceanCPExists);
+    }
+
+    @Test
+    public void testSetName() {
+        sunsetColourPalette.setName("Sunset but cooler");
+        assertEquals("Sunset but cooler", sunsetColourPalette.getName());
     }
 
 }

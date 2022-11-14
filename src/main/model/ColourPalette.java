@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.CurrentPaletteException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -56,14 +57,16 @@ public class ColourPalette implements Writable {
         return false;
     }
 
-    // REQUIRES: colourPalette is not current colourPalette
     // MODIFIES: this
     // EFFECTS: if collection of subColourPalettes does not have a colour palette
     //             with same name as given colour palette, nor is the given colour palette a parent colour palette,
     //          adds given colour palette to collection of subColourPalettes, return true
     //          else, do nothing and return false
-    public boolean addSubColourPalette(ColourPalette colourPalette) {
-        if (ifSubColourPaletteAlreadyExists(colourPalette.getName())) {
+    public boolean addSubColourPalette(ColourPalette colourPalette) throws CurrentPaletteException {
+        if (this.name.equals(colourPalette.getName())) {
+            throw new CurrentPaletteException();
+        }
+        if (ifSubColourPaletteAlreadyExists(colourPalette)) {
             return false;
         }
         this.subColourPalettes.add(colourPalette);
@@ -71,14 +74,16 @@ public class ColourPalette implements Writable {
         return true;
     }
 
-    // REQUIRES: colourPalette is not current colourPalette
     // MODIFIES: this
-    // EFFECTS: if collection of subColourPalettes does not have a colour palette
-    //             with same name as given colour palette, nor is the given colour palette a parent colour palette,
+    // EFFECTS: if collection of subColourPalettes has a colour palette
+    //             with same name as given colour palette,
     //          remove given colour palette from collection of subColourPalettes, return true
     //          else, do nothing and return false
-    public boolean deleteSubColourPalette(ColourPalette colourPalette) {
-        if (ifSubColourPaletteAlreadyExists(colourPalette.getName())) {
+    public boolean deleteSubColourPalette(ColourPalette colourPalette) throws CurrentPaletteException {
+        if (this.name.equals(colourPalette.getName())) {
+            throw new CurrentPaletteException();
+        }
+        if (ifSubColourPaletteAlreadyExists(colourPalette)) {
             this.subColourPalettes.remove(colourPalette);
             numOfColourPalettes--;
             return true;
@@ -98,9 +103,9 @@ public class ColourPalette implements Writable {
 
     // EFFECTS: returns true if current colour palette already has given colourPalette as sub colour palette,
     //          else returns false
-    public boolean ifSubColourPaletteAlreadyExists(String colourPalette) {
+    public boolean ifSubColourPaletteAlreadyExists(ColourPalette colourPalette) {
         for (ColourPalette cp: subColourPalettes) {
-            if (cp.getName().equals(colourPalette)) {
+            if (cp.getName().equals(colourPalette.getName())) {
                 return true;
             }
         }

@@ -3,6 +3,7 @@ package persistence;
 import model.*;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,5 +22,16 @@ public class JsonTest {
         assertEquals(name, cp.getName());
         assertEquals(numOfColours, cp.getNumOfColours());
         assertEquals(numOfSubPalettes, cp.getNumOfColourPalettes());
+    }
+
+    protected void checkReferenceImage(String name, String imageURL, ReferenceImage refImage) {
+        assertEquals(name, refImage.getName());
+        assertEquals(imageURL, refImage.getImageURL());
+    }
+
+    protected void checkReferenceFolder(String name, int numOfRefImages, int numOfSubFolders, ReferenceFolder rf) {
+        assertEquals(name, rf.getFolderName());
+        assertEquals(numOfRefImages, rf.getReferenceImages().size());
+        assertEquals(numOfSubFolders, rf.getSubRefFolders().size());
     }
 }

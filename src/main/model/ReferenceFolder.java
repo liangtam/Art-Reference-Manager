@@ -1,9 +1,11 @@
 package model;
 
+import model.exceptions.CurrentFolderException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Represents a folder of reference images and sub-reference folders
@@ -15,6 +17,8 @@ public class ReferenceFolder implements Writable {
     // Creates a reference folder with given name and no images added yet
     public ReferenceFolder(String name) {
         this.folderName = name;
+        this.refImages = new ArrayList<>();
+        this.subRefFolders = new ArrayList<>();
     }
 
     // MODIFIES: this
@@ -32,9 +36,58 @@ public class ReferenceFolder implements Writable {
     // MODIFIES: this
     // EFFECTS: removes images given reference from collection of reference images
     public boolean deleteRef(ReferenceImage ref) {
-        if (!ifRefExistsAlready(ref)) {
+        if (refImages.isEmpty()) {
+            return false;
+        }
+
+        if (ifRefExistsAlready(ref)) {
             this.refImages.remove(ref);
             return true;
+        }
+        return false;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if collection of subRefFolders does not have a reference folder
+    //             with same name as given reference folder, nor
+    //             is the given reference folder a parent reference folder,
+    //          adds given reference folder to collection of subRefFolders, return true
+    //          else, do nothing and return false
+    public boolean addSubRefFolder(ReferenceFolder referenceFolder) throws CurrentFolderException {
+        if (folderName.equals(referenceFolder.getFolderName())) {
+            throw new CurrentFolderException();
+        }
+        if (ifSubRefFolderAlreadyExists(referenceFolder)) {
+            return false;
+        }
+        this.subRefFolders.add(referenceFolder);
+        return true;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if collection of subRefFolders has a sub folder
+    //                 with same name as given sub folder,
+    //                 remove given sub folder from collection of subRefFolders, return true
+    //              else, do nothing and return false
+    public boolean deleteSubRefFolder(ReferenceFolder referenceFolder) throws CurrentFolderException {
+        if (this.folderName.equals(referenceFolder.getFolderName())) {
+            throw new CurrentFolderException();
+        }
+        if (ifSubRefFolderAlreadyExists(referenceFolder)) {
+            this.subRefFolders.remove(referenceFolder);
+            return true;
+        }
+
+        return false;
+    }
+
+    // EFFECTS: returns true if current folder already has given sub folder as sub folder,
+    //          else returns false
+    public boolean ifSubRefFolderAlreadyExists(ReferenceFolder referenceFolder) {
+        for (ReferenceFolder rf: subRefFolders) {
+            if (rf.getFolderName().equals(referenceFolder.getFolderName())) {
+                return true;
+            }
         }
         return false;
     }
@@ -48,6 +101,8 @@ public class ReferenceFolder implements Writable {
         }
         return false;
     }
+
+
 
     public void printAllReferenceImageNames() {
         for (int i = 0; i < refImages.size(); i++) {
