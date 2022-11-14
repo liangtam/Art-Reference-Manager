@@ -69,3 +69,5 @@ and pull them out to display into a separate window
 ## DATA PERSISTENCE USER STORIES
 - As a user, I want to be able to save all the colour palettes I've created, including the colours and sub-colour palettes in each colour palette when I enter "s"
 - As a user, I want to be able to load all the saved colour palettes, including the colours and sub-colour palettes in each colour palette when I enter "l"
+Citations:
+- // citation: https://www.youtube.com/watch?v=Kmgo00avvEw&t=11742s

@@ -14,7 +14,7 @@ public class Menu {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/colourPalettes.json";
-    // private List<ReferenceFolder> referenceFolders; to be added in later phase 3
+    private List<ReferenceFolder> referenceFolders;
 
     // EFFECTS: creates a menu with no colour palettes created
     public Menu() {
@@ -428,6 +428,8 @@ public class Menu {
             System.out.println("Could not save to file: " + JSON_STORE);
         }
     }
+
+
 
     // MODIFIES: this
     // EFFECTS: loads list of colour palettes from file

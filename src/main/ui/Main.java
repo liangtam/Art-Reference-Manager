@@ -1,8 +1,12 @@
 package ui;
 
+import javax.swing.*;
+
+
 public class Main {
     public static void main(String[] args) {
-        Menu mainMenu = new Menu();
-        mainMenu.startMenu();
+        // JFrame = a GUI window to add components to
+        new InitialFrame();
+
     }
 }

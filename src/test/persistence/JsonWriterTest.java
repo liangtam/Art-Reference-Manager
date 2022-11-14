@@ -2,6 +2,8 @@ package persistence;
 
 import model.Colour;
 import model.ColourPalette;
+import model.ReferenceFolder;
+import model.ReferenceImage;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -125,6 +127,79 @@ public class JsonWriterTest extends JsonTest{
             checkColourPalette("Ocean", 1, 0, oceanCP);
         } catch (IOException e) {
             fail("IOException shouldn't have been thrown!");
+        }
+    }
+
+    @Test
+    public void testWriterListOfOneReferenceFolder() {
+        try {
+            List<ReferenceFolder> rfs = new ArrayList<>();
+            ReferenceFolder rf = new ReferenceFolder("Folder 1");
+            rfs.add(rf);
+
+            JsonWriter writer = new JsonWriter("./data/testWriterListOfOneReferenceFolder.json");
+            writer.open();
+            writer.writeListOfReferenceFolders(rfs);
+            writer.close();
+
+            JsonReaderRef reader = new JsonReaderRef("./data/testWriterListOfOneReferenceFolder.json");
+            rfs = reader.read();
+            assertEquals(1, rfs.size());
+            ReferenceFolder rfFromFile = rfs.get(0);
+            checkReferenceFolder("Folder 1", 0, 0 , rfFromFile);
+
+        } catch (IOException e) {
+            fail("IOException shouldn't have been thrown!");
+        }
+    }
+
+    @Test
+    public void testWriteListOfMultipleReferenceFolders() {
+        try {
+            List<ReferenceFolder> rfs = new ArrayList<>();
+            ReferenceFolder folder1 = new ReferenceFolder("Folder 1");
+            ReferenceFolder folder2 = new ReferenceFolder("Folder 2");
+            ReferenceFolder folder3 = new ReferenceFolder("Folder 3");
+            ReferenceImage image1 = new ReferenceImage("Image 1", "src/main/resources/artref-add.png");
+            ReferenceImage image2 = new ReferenceImage("Image 2", "src/main/resources/artref-addcp.png");
+            ReferenceImage image3 = new ReferenceImage("Image 3", "src/main/resources/artref-addfolder.png");
+            ReferenceImage image4 = new ReferenceImage("Image 4", "src/main/resources/artref-bg.png");
+
+            folder1.addSubRefFolder(folder2);
+            folder2.addRef(image3);
+            folder1.addRef(image1);
+            folder1.addRef(image2);
+            folder3.addRef(image4);
+
+            rfs.add(folder1);
+            rfs.add(folder3);
+
+            JsonWriter writer = new JsonWriter("./data/testWriterListOfMultipleReferenceFolders.json");
+            writer.open();
+            writer.writeListOfReferenceFolders(rfs);
+            writer.close();
+
+            JsonReaderRef reader = new JsonReaderRef("./data/testWriterListOfMultipleReferenceFolders.json");
+            rfs = reader.read();
+
+            assertEquals(2, rfs.size());
+            ReferenceFolder f1 = rfs.get(0);
+            ReferenceImage img1 = folder1.getReferenceImages().get(0);
+            ReferenceImage img2 = folder1.getReferenceImages().get(1);
+            ReferenceFolder folder2akaSubFolderOfFolder1 = folder1.getSubRefFolders().get(0);
+
+            checkReferenceFolder("Folder 1", 2, 1, f1);
+            checkReferenceFolder("Folder 2", 1, 0, folder2akaSubFolderOfFolder1);
+            checkReferenceImage("Image 1", "src/main/resources/artref-add.png", img1);
+            checkReferenceImage("Image 2", "src/main/resources/artref-addcp.png", img2);
+
+            ReferenceFolder f3 = rfs.get(1);
+            ReferenceImage img4 = folder3.getReferenceImages().get(0);
+
+            checkReferenceImage("Image 4", "src/main/resources/artref-bg.png", img4);
+            checkReferenceFolder("Folder 3", 1, 0, f3);
+        } catch (IOException e) {
+            fail("IOException unexpected!");
         }
     }
 }

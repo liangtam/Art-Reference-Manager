@@ -1,6 +1,8 @@
 package persistence;
 
 import model.ColourPalette;
+import model.ReferenceFolder;
+import model.ReferenceImage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,6 +39,17 @@ public class JsonWriter {
             listOfColourPalettes.put(json);
         }
         saveToFile(listOfColourPalettes.toString(TAB));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: writes JSON representation of list of colour palette
+    public void writeListOfReferenceFolders(List<ReferenceFolder> listOfRFs) {
+        JSONArray listOfReferenceFolders = new JSONArray();
+        for (ReferenceFolder rf: listOfRFs) {
+            JSONObject json = rf.toJson();
+            listOfReferenceFolders.put(json);
+        }
+        saveToFile(listOfReferenceFolders.toString(TAB));
     }
 
     // MODIFIES: this
