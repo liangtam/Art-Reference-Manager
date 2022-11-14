@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 public class InitialFrame extends JFrame {
 
+    @SuppressWarnings("methodlength")
     InitialFrame() {
         JFrame frame = new JFrame();
 
