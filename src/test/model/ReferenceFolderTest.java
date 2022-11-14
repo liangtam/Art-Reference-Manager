@@ -229,6 +229,18 @@ public class ReferenceFolderTest {
     }
 
     @Test
+    public void testIfRefExistsAlready() {
+        folder1.addRef(ref1);
+
+        boolean ref1exists = folder1.ifRefExistsAlready(ref1);
+        boolean ref2exists = folder1.ifRefExistsAlready(ref2);
+
+        assertTrue(ref1exists);
+        assertFalse(ref2exists);
+
+    }
+
+    @Test
     public void testSetFolderName() {
         folder1.setFolderName("Folder 1");
         assertEquals("Folder 1", folder1.getFolderName());
