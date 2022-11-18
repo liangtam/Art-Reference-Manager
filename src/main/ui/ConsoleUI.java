@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 // Represents the UI the user interacts with to add colour palettes (and later, reference images in phase 3)
-public class Menu {
+public class ConsoleUI {
     private List<ColourPalette> colourPalettes;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -17,7 +17,7 @@ public class Menu {
     private List<ReferenceFolder> referenceFolders;
 
     // EFFECTS: creates a menu with no colour palettes created
-    public Menu() {
+    public ConsoleUI() {
         colourPalettes = new ArrayList<>();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);

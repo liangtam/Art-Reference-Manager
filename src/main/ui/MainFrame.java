@@ -3,51 +3,70 @@ package ui;
 import model.ColourPalette;
 import model.ReferenceFolder;
 import persistence.JsonReader;
+import persistence.JsonReaderRef;
 import persistence.JsonWriter;
+import ui.tabs.ColourPalettesTab;
+import ui.tabs.CreateColourPaletteTab;
+import ui.tabs.CreateRefFolderTab;
+import ui.tabs.ReferenceFoldersTab;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 
 public class MainFrame extends JFrame {
-    private java.util.List<ColourPalette> colourPalettes;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
-    private static final String JSON_STORE = "./data/colourPalettes.json";
-    private List<ReferenceFolder> referenceFolders;
+
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 696;
+
+    private static final ImageIcon ICON = new ImageIcon("src/main/resources/artref-icon.png");
+
+    private JTabbedPane tabbedPane;
 
     public MainFrame() {
+        super("Art Reference Manager");
+        setSize(WIDTH, HEIGHT);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(ICON.getImage()); // changes the icon of the frame
 
-        ImageIcon icon = new ImageIcon("src/main/resources/artref-icon.png");
-        ImageIcon cpImage = new ImageIcon("src/main/resources/artref-cp.png");
-        ImageIcon folderImage = new ImageIcon("src/main/resources/artref-folder.png");
-        ImageIcon backgroundImage = new ImageIcon("src/main/resources/artref-bg.png");
+        tabbedPane = new JTabbedPane();
+        loadTabs();
+        getContentPane().add(tabbedPane);
+        setVisible(true);
+    }
+
+    public void loadTabs() {
+        JPanel colourPaletteTab = new ColourPalettesTab();
+        JPanel referenceFoldersTab = new ReferenceFoldersTab();
+        JPanel createColourPaletteTab = new CreateColourPaletteTab();
+        JPanel createRefFolderTab = new CreateRefFolderTab();
+
+        tabbedPane.add(colourPaletteTab, 0);
+        tabbedPane.setTitleAt(0, "Palettes");
+        tabbedPane.add(referenceFoldersTab, 1);
+        tabbedPane.setTitleAt(1, "References");
+        tabbedPane.add(createColourPaletteTab, 2);
+        tabbedPane.setTitleAt(2, "Create Palette");
+        tabbedPane.add(createRefFolderTab, 3);
+        tabbedPane.setTitleAt(3, "Create Reference Folder");
 
 
-        JPanel panel = new JPanel();
+    }
 
-        this.setSize(1000, 696);
-        this.setTitle("Art Reference Manager");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(null);
-        this.setVisible(true);
+    public JTabbedPane getTabbedPane() {
+        return this.tabbedPane;
+    }
 
-        this.setIconImage(icon.getImage()); // changes the icon of the frame
-        loadColourPalettes();
+    public int getHeight() {
+        return HEIGHT;
+    }
+
+    public int getWidth() {
+        return WIDTH;
     }
 
 
-    // MODIFIES: this
-    // EFFECTS: loads list of colour palettes from file
-    private void loadColourPalettes() {
-        try {
-            colourPalettes = jsonReader.read();
-            System.out.println("Loaded all the colour palettes from " + JSON_STORE);
-        } catch (IOException e) {
-            System.out.println("Could not save to file: " + JSON_STORE);
-        }
-    }
 
 
 }

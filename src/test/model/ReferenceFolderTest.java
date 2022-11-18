@@ -238,6 +238,14 @@ public class ReferenceFolderTest {
         assertTrue(ref1exists);
         assertFalse(ref2exists);
 
+        ReferenceImage ref4 = new ReferenceImage("Ref4", "src/main/resources/artref-add.png");
+        boolean ref4exists = folder1.ifRefExistsAlready(ref4);
+        assertTrue(ref4exists);
+
+        ReferenceImage ref5 = new ReferenceImage("R1", "src/main/resources/artref-add.png");
+        boolean ref5exists = folder1.ifRefExistsAlready(ref5);
+        assertTrue(ref5exists);
+
     }
 
     @Test

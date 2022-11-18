@@ -95,7 +95,7 @@ public class ReferenceFolder implements Writable {
     // EFFECTS: checks if given reference image is already in the collection of reference images and returns
     public boolean ifRefExistsAlready(ReferenceImage ref) {
         for (ReferenceImage r: this.refImages) {
-            if (r == ref || r.getName().equals(ref.getName()) || r.getImage().equals(ref.getImage())) {
+            if (r == ref || r.getName().equals(ref.getName()) || r.getImageURL().equals(ref.getImageURL())) {
                 return true;
             }
         }

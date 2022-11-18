@@ -70,4 +70,7 @@ and pull them out to display into a separate window
 - As a user, I want to be able to save all the colour palettes I've created, including the colours and sub-colour palettes in each colour palette when I enter "s"
 - As a user, I want to be able to load all the saved colour palettes, including the colours and sub-colour palettes in each colour palette when I enter "l"
 Citations:
-- // citation: https://www.youtube.com/watch?v=Kmgo00avvEw&t=11742s
+- Java Swing GUI tutorial https://www.youtube.com/watch?v=Kmgo00avvEw&t=11742s Java Swing GUI tutorial
+- How to use ImageIcon on button https://stackoverflow.com/questions/4898584/java-using-an-image-as-a-button
+- How to scale an image icon https://www.youtube.com/watch?v=G3QJqbYuJ7M
+- 
