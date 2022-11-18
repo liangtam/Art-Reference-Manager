@@ -25,6 +25,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("Art Reference Manager");
+
         setSize(WIDTH, HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +38,7 @@ public class MainFrame extends JFrame {
     }
 
     public void loadTabs() {
-        JPanel colourPaletteTab = new ColourPalettesTab();
+        JPanel colourPaletteTab = new ColourPalettesTab(this);
         JPanel referenceFoldersTab = new ReferenceFoldersTab();
         JPanel createColourPaletteTab = new CreateColourPaletteTab();
         JPanel createRefFolderTab = new CreateRefFolderTab();
@@ -56,6 +57,13 @@ public class MainFrame extends JFrame {
 
     public JTabbedPane getTabbedPane() {
         return this.tabbedPane;
+    }
+
+    public ImageIcon scaleIcon(ImageIcon icon, JButton button) {
+        Image img = icon.getImage();
+        img = img.getScaledInstance(button.getWidth() / 2, button.getHeight() / 2, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(img);
+        return scaledIcon;
     }
 
     public int getHeight() {

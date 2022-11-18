@@ -73,4 +73,12 @@ Citations:
 - Java Swing GUI tutorial https://www.youtube.com/watch?v=Kmgo00avvEw&t=11742s Java Swing GUI tutorial
 - How to use ImageIcon on button https://stackoverflow.com/questions/4898584/java-using-an-image-as-a-button
 - How to scale an image icon https://www.youtube.com/watch?v=G3QJqbYuJ7M
-- 
+- How to remove everything from a panel https://stackoverflow.com/questions/38349445/how-to-delete-all-components-in-a-jpanel-dynamically
+
+# Instructions for Grader
+
+- You can add colours to a colour palette while creating the palette by going to the Create Colour Palette tab, and adding colors
+- You can display all the colours in a certain colour palette by clicking the palette in the Palettes Tab
+- You can locate my visual component by launching the application--there's a visual component in every tab
+- You can save the state of my application by clicking the green save icon in the bottom right
+- You can reload the state of my application by clicking the blue refresh icon in the bottom right
