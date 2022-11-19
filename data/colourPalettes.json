@@ -82,15 +82,15 @@
      },
      {
           "listOfSubColourPalettes": [],
-          "paletteName": "fahdsihfdhfdsuifdhuaf",
-          "listOfColours": []
-     },
-     {
-          "listOfSubColourPalettes": [],
           "paletteName": "safjdakfdahfuidafia",
           "listOfColours": [{
                "name": "dsfadsfdaf",
                "hex": "#ff0000"
           }]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "Hello",
+          "listOfColours": []
      }
 ]

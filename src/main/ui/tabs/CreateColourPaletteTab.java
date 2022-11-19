@@ -122,7 +122,18 @@ public class CreateColourPaletteTab extends Tab {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == addColourBtn) {
-                    addColour();
+                    String colorName = textColourName.getText();
+                    String colorHex = textColourHex.getText();
+                    if (colorName.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Don't be shy, give your colour a name.",
+                                "Cannot add colour", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    } else if (colorHex.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Please enter a hex code for your colour.",
+                                "Cannot add colour", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    addColour(colorName, colorHex);
                 }
             }
         });
@@ -136,13 +147,18 @@ public class CreateColourPaletteTab extends Tab {
                         System.out.println("Colour palette " + name + " already exists.");
                         textPaletteName.setText("");
                         return;
+                    } else if (name.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Don't be shy, give your palette a name.",
+                                "Cannot add palette", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
                     ColourPalette cp = createColourPalette(name);
                     addColourPalette(cp);
                     colourList.removeAll();
                     colourListModel.removeAllElements();
                     colours.clear();
-                    System.out.println("Added cp! Num of cps: " + ui.getColourPalettes().size());
+                    JOptionPane.showMessageDialog(null, "Added palette! Number of Palettes: "
+                                    + ui.getColourPalettes().size(), "Success!", JOptionPane.PLAIN_MESSAGE);
                 }
             }
         });
@@ -160,9 +176,7 @@ public class CreateColourPaletteTab extends Tab {
     }
 
     // EFFECTS: creates colour
-    public void addColour() {
-        String colorName = textColourName.getText();
-        String colorHex = textColourHex.getText();
+    public void addColour(String colorName, String colorHex) {
         Colour colour = new Colour(colorName, colorHex);
         colours.add(colour);
         colourListModel.addElement(colour.getName());
@@ -182,6 +196,7 @@ public class CreateColourPaletteTab extends Tab {
     // EFFECTS: Adds given colour palette to the MainFrame's list of colour palettes
     public void addColourPalette(ColourPalette cp) {
         ui.getColourPalettes().add(cp);
+        ui.saveAllColourPalettes();
     }
 
     // EFFECTS: return true if the colour palette we want to add already exists,
