@@ -64,14 +64,13 @@ public class MainTab extends Tab {
     }
 
     public void renderItems() {
-        renderColourPalettes();
         renderReferenceFolders();
+        renderColourPalettes();
     }
 
     // EFFECTS: Shows a colour palette image for every colour palette. Each image can be clicked to show more info
     //          about the clicked palette
     public void renderColourPalettes() {
-        this.removeAll();
         for (ColourPalette cp: this.ui.getColourPalettes()) {
             JButton palette = new JButton(cp.getName());
             palette.setSize(300, 300);
@@ -96,6 +95,7 @@ public class MainTab extends Tab {
     }
 
     public void renderReferenceFolders() {
+        this.removeAll();
         for (ReferenceFolder rf: this.ui.getReferenceFolders()) {
             JButton refFolder = new JButton(rf.getFolderName());
             refFolder.setSize(300, 300);
