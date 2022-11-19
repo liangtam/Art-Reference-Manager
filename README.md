@@ -74,10 +74,13 @@ Citations:
 - How to scale an image icon https://www.youtube.com/watch?v=G3QJqbYuJ7M
 - How to remove everything from a panel https://stackoverflow.com/questions/38349445/how-to-delete-all-components-in-a-jpanel-dynamically
 
+- edX Basics 1 Practice LongFormProblemsStarter (used it to reference how tabs worked)
+- Phase 2 JsonSerializationDemoProject (used it for data persistence)
+
 # Instructions for Grader
 
 - You can add colours to a colour palette while creating the palette by going to the Create Colour Palette tab, and adding colors
 - You can display all the colours in a certain colour palette by clicking the palette in the Palettes Tab
-- You can locate my visual component by launching the application--there's a visual component in every tab
+- You can locate my visual component by launching the application. It's also in the main menu, and pop up windows for each palette or reference folder
 - You can save the state of my application by clicking the green save icon in the bottom right
 - You can reload the state of my application by clicking the blue refresh icon in the bottom right
