@@ -38,20 +38,6 @@
      },
      {
           "listOfSubColourPalettes": [],
-          "paletteName": "Sunset 2",
-          "listOfColours": [
-               {
-                    "name": "RedAgain",
-                    "hex": "#FF0000"
-               },
-               {
-                    "name": "Green",
-                    "hex": "#00FF00"
-               }
-          ]
-     },
-     {
-          "listOfSubColourPalettes": [],
           "paletteName": "Skin Tones",
           "listOfColours": [
                {
@@ -79,18 +65,5 @@
                     "hex": "#743D2B"
                }
           ]
-     },
-     {
-          "listOfSubColourPalettes": [],
-          "paletteName": "safjdakfdahfuidafia",
-          "listOfColours": [{
-               "name": "dsfadsfdaf",
-               "hex": "#ff0000"
-          }]
-     },
-     {
-          "listOfSubColourPalettes": [],
-          "paletteName": "Hello",
-          "listOfColours": []
      }
 ]

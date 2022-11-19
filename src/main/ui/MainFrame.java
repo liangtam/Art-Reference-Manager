@@ -49,6 +49,7 @@ public class MainFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(ICON.getImage()); // changes the icon of the frame
+        setLocation(250, 0);
 
         tabbedPane = new JTabbedPane();
         tabbedPane.setTabPlacement(JTabbedPane.TOP);

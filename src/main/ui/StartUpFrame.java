@@ -41,6 +41,7 @@ public class StartUpFrame extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         frame.setVisible(true);
+        frame.setLocation(250, 0);
         frame.setIconImage(icon.getImage());
         frame.setResizable(false);
         bg.add(loadButton);

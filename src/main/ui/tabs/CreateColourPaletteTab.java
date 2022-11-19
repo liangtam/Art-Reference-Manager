@@ -81,6 +81,7 @@ public class CreateColourPaletteTab extends Tab {
         return panel;
     }
 
+    // MODIFIES: JPanel
     // EFFECTS: puts all the necessary text fields for the  user to fill in form
     public void setTextFields(JPanel panel) {
         textPaletteName = new JTextField();
@@ -95,6 +96,7 @@ public class CreateColourPaletteTab extends Tab {
 
     }
 
+    // MODIFIES: JPanel
     // EFFECTS: Adds buttons onto the tab
     public void setButtons(JPanel panel) {
         addColourBtn = new JButton("Add Colour");
@@ -164,6 +166,7 @@ public class CreateColourPaletteTab extends Tab {
         });
     }
 
+    // MODIFIES: this
     // EFFECTS: Creates a new colour palette using the information provided by user input
     public ColourPalette createColourPalette(String name) {
 
@@ -175,6 +178,7 @@ public class CreateColourPaletteTab extends Tab {
         return colourPalette;
     }
 
+    // MODIFIES: this
     // EFFECTS: creates colour
     public void addColour(String colorName, String colorHex) {
         Colour colour = new Colour(colorName, colorHex);

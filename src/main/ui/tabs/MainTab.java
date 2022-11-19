@@ -30,6 +30,9 @@ public class MainTab extends Tab {
             public void actionPerformed(ActionEvent e) {
                 ui.saveAllColourPalettes();
                 ui.saveAllReferenceFolders();
+                JOptionPane.showMessageDialog(null,
+                        "Saved all colour palettes and reference folders!", "Save success",
+                        JOptionPane.PLAIN_MESSAGE);
                 renderItems();
             }
         });
@@ -38,6 +41,9 @@ public class MainTab extends Tab {
             public void actionPerformed(ActionEvent e) {
                 ui.loadColourPalettes();
                 ui.loadReferenceFolders();
+                JOptionPane.showMessageDialog(null,
+                        "Loaded all colour palettes and reference folders!", "Load success",
+                        JOptionPane.PLAIN_MESSAGE);
                 renderItems();
             }
         });

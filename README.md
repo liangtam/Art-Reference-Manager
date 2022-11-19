@@ -73,6 +73,7 @@ Citations:
 - How to use ImageIcon on button https://stackoverflow.com/questions/4898584/java-using-an-image-as-a-button
 - How to scale an image icon https://www.youtube.com/watch?v=G3QJqbYuJ7M
 - How to remove everything from a panel https://stackoverflow.com/questions/38349445/how-to-delete-all-components-in-a-jpanel-dynamically
+- How to fix BoyLayout can't be shared error https://stackoverflow.com/questions/761341/error-upon-assigning-layout-boxlayout-cant-be-shared
 
 - edX Basics 1 Practice LongFormProblemsStarter (used it to reference how tabs worked)
 - Phase 2 JsonSerializationDemoProject (used it for data persistence)

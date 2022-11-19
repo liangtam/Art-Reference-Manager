@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 // Represents all the colour info of a colour palette
 public class PaletteDetailFrame extends JFrame {
     private ColourPalette cp;
+    private static final ImageIcon PALETTE_ICON = new ImageIcon("src/main/resources/artref-cp.png");
     JButton deleteBtn;
     MainFrame mainFrame;
 
@@ -35,8 +36,9 @@ public class PaletteDetailFrame extends JFrame {
         buttonsPanel.add(deleteBtn);
         add(buttonsPanel);
         setVisible(true);
-        setLocation(900, 500);
+        setLocation(900, 300);
         setSize(500, 500);
+        setIconImage(PALETTE_ICON.getImage());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -70,8 +72,8 @@ public class PaletteDetailFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == deleteBtn) {
-                    //JOptionPane.showConfirmDialog(null, "Are you sure you want to delete "
-                    //+ " this palette?", JOptionPane.YES_NO_CANCEL_OPTION, );
+                    JOptionPane.showConfirmDialog(null, "Are you sure you want to delete "
+                            + " this palette?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
                     mainFrame.getColourPalettes().remove(cp);
                     dispose();
                 }

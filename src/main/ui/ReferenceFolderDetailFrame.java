@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ReferenceFolderDetailFrame extends JFrame {
+    private static final ImageIcon FOLDER_ICON = new ImageIcon("src/main/resources/artref-folder.png");
     private JScrollPane scrollPane;
     private JPanel panel;
     private ReferenceFolder rf;
@@ -28,6 +29,7 @@ public class ReferenceFolderDetailFrame extends JFrame {
         setVisible(true);
         setLocation(500, 200);
         setSize(800, 600);
+        setIconImage(FOLDER_ICON.getImage());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
