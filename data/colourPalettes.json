@@ -35,5 +35,62 @@
                "name": "Red",
                "hex": "#FF0000"
           }]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "Sunset 2",
+          "listOfColours": [
+               {
+                    "name": "RedAgain",
+                    "hex": "#FF0000"
+               },
+               {
+                    "name": "Green",
+                    "hex": "#00FF00"
+               }
+          ]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "Skin Tones",
+          "listOfColours": [
+               {
+                    "name": "Light",
+                    "hex": "#fdf5e2"
+               },
+               {
+                    "name": "Yellower Light",
+                    "hex": "#fdf1cb"
+               },
+               {
+                    "name": "Richer Light",
+                    "hex": "#fddcb4"
+               },
+               {
+                    "name": "Tan",
+                    "hex": "#C68863"
+               },
+               {
+                    "name": "Light Dark",
+                    "hex": "#B06C49"
+               },
+               {
+                    "name": "Dark",
+                    "hex": "#743D2B"
+               }
+          ]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "fahdsihfdhfdsuifdhuaf",
+          "listOfColours": []
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "safjdakfdahfuidafia",
+          "listOfColours": [{
+               "name": "dsfadsfdaf",
+               "hex": "#ff0000"
+          }]
      }
 ]

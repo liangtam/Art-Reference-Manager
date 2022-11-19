@@ -407,7 +407,7 @@ public class ConsoleUI {
         }
     }
 
-    // EFFECTS: prints out all the colours in this colour palette in formate - Name:Hex
+    // EFFECTS: prints out all the colours in this colour palette in format - Name:Hex
     public void printAllColours(ColourPalette cp) {
         System.out.println("--COLOURS--");
         for (Colour colour: cp.getColours()) {
@@ -417,7 +417,7 @@ public class ConsoleUI {
 
     // ---------- DATA PERSISTENCE STUFF --------------
 
-    //  EFFECTS: Saves all the current created colour palettes to file
+    // EFFECTS: Saves all the current created colour palettes to file
     private void saveAllColourPalettes() {
         try {
             jsonWriter.open();
@@ -428,8 +428,6 @@ public class ConsoleUI {
             System.out.println("Could not save to file: " + JSON_STORE);
         }
     }
-
-
 
     // MODIFIES: this
     // EFFECTS: loads list of colour palettes from file

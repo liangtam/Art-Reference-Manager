@@ -6,7 +6,6 @@ import model.ReferenceImage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class ReferenceFolderDetailFrame extends JFrame {
     private JScrollPane scrollPane;
@@ -15,7 +14,7 @@ public class ReferenceFolderDetailFrame extends JFrame {
 
     public ReferenceFolderDetailFrame(ReferenceFolder rf) {
         this.rf = rf;
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 3));
         scrollPane = new JScrollPane();
         panel = new JPanel();
         panel.setSize(this.getSize());

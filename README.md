@@ -47,13 +47,12 @@ just to look at some reference pictures.
 That's why I search up references on my laptop instead.
 
 ## User stories
-- As a user, I want to be able to upload images I use for art references.
-- As a user, I want to be able to create and name art folders 
-- As a user, I want to be able to insert those references into those folders
-- As a user, I want to be able to have subfolders within folders
-- As a user, I want to be able to delete and rename art folders
-- As a user, I want to be able to select multiple images from one folder and move them into a different folder
-- As a user, I want to be able to delete any reference image uploaded
+- As a user, I want to be able to upload images I use for art references. (DONE)
+- As a user, I want to be able to create and name art folders (DONE)
+- As a user, I want to be able to insert those references into those folders (DONE)
+- As a user, I want to be able to have subfolders within folders (DONE)
+- As a user, I want to be able to delete and rename art folders (DONE)
+- As a user, I want to be able to delete any reference image uploaded (DONE)
 - As a user, I want to be able to create and name a colour palette (DONE)
 - As a user, I want to be able to add an arbitrary number of colours with specific hex values into a colour palette(DONE)
 - As a user, I want to be able to add an arbitrary number of sub-colour palettes within a non-sub colour palette (DONE)
