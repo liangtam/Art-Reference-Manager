@@ -11,12 +11,12 @@
           "paletteName": "Sunset",
           "listOfColours": [
                {
-                    "name": "red",
-                    "hex": "#ff0000"
+                    "name": "Red",
+                    "hex": "#FF0000"
                },
                {
-                    "name": "yellow",
-                    "hex": "#ff2500"
+                    "name": "Yellow",
+                    "hex": "#FFFF00"
                }
           ]
      },
