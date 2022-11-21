@@ -43,5 +43,13 @@
                "imageURL": "src/main/resources/artref_load.png"
           }],
           "folderName": "dasfjdhafaf"
+     },
+     {
+          "listOfSubFolders": [],
+          "listOfImages": [{
+               "imageName": "pfp",
+               "imageURL": "C:\\Users\\tammi\\OneDrive\\Documents\\icyminitam_pfp.png"
+          }],
+          "folderName": "foldererererwr"
      }
 ]

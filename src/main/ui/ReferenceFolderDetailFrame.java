@@ -7,12 +7,15 @@ import model.ReferenceImage;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents the details of a reference folder (all its photos)
 public class ReferenceFolderDetailFrame extends JFrame {
     private static final ImageIcon FOLDER_ICON = new ImageIcon("src/main/resources/artref-folder.png");
     private JScrollPane scrollPane;
     private JPanel panel;
     private ReferenceFolder rf;
 
+    // MODIFIES: this
+    // EFFECTS: constructs a frame displaying all the photos in given reference folder
     public ReferenceFolderDetailFrame(ReferenceFolder rf) {
         this.rf = rf;
         setLayout(new FlowLayout(FlowLayout.LEFT, 10, 3));
@@ -33,6 +36,8 @@ public class ReferenceFolderDetailFrame extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays all the reference images of given folder
     public void addRefs() {
         for (ReferenceImage ref: rf.getReferenceImages()) {
             JLabel img = new JLabel();

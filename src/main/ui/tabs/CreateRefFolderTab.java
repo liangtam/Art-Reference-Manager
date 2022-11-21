@@ -4,10 +4,12 @@ import model.ReferenceFolder;
 import model.ReferenceImage;
 import ui.MainFrame;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,10 +19,14 @@ public class CreateRefFolderTab extends Tab {
     JLabel labelImageName;
     JLabel labelImageURL;
     JTextField textImageName;
-    JTextField textImageURL;
+    JButton uploadImgBtn;
     JButton addImageBtn;
     JButton addFolderBtn;
+    JPanel leftPanel;
+    JPanel rightPanel;
     JList<String> imageList;
+    JFileChooser fc = new JFileChooser();
+    private String imageFileURL;
     DefaultListModel imageListModel;
 
     private List<ReferenceImage> refImages;
@@ -29,18 +35,25 @@ public class CreateRefFolderTab extends Tab {
         super(ui);
         setLayout(null);
         refImages = new ArrayList<>();
+        leftPanel = new JPanel();
+        rightPanel = new JPanel();
+        leftPanel.setLayout(null);
+        leftPanel.setBounds(0, 0, 600, 696);
+//        rightPanel.setLayout(null);
+//        rightPanel.setBounds(400, 0, 600, 696);
 
         imageList = new JList();
         imageListModel = new DefaultListModel();
-        add(addForm());
+        addForm();
         add(addList());
+        add(leftPanel);
+        add(rightPanel);
 
     }
 
-    public JPanel addForm() {
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBounds(0, 0, 600, 696);
+    // MODIFIES: this
+    // EFFECTS: adds a form for a user to fill in
+    public void addForm() {
 
         labelFolderName = new JLabel("Folder Name: ");
         JLabel label = new JLabel("----------ADD IMAGES----------");
@@ -48,20 +61,20 @@ public class CreateRefFolderTab extends Tab {
         labelImageURL = new JLabel("Upload image:");
 
         labelFolderName.setBounds(70, 90, 300, 30);
-        panel.add(labelFolderName);
+        leftPanel.add(labelFolderName);
         label.setBounds(100, 180, 900, 30);
-        panel.add(label);
+        leftPanel.add(label);
         labelImageName.setBounds(70, 280, 300, 30);
-        panel.add(labelImageName);
+        leftPanel.add(labelImageName);
         labelImageURL.setBounds(50, 380, 300, 30);
 
-        panel.add(labelImageURL);
-        setTextFields(panel);
-        setButtons(panel);
-        return panel;
+        leftPanel.add(labelImageURL);
+        setTextFields();
+        setButtons();
     }
 
-    // EFFECTS: displays a list of image names that the user added so far to the palette they're creating
+    // MODIFIES: this
+    // EFFECTS: displays a list of image names that the user added so far to the folder they're creating
     public JPanel addList() {
         JPanel panel = new JPanel();
         panel.setBounds(600, 0, 400, 696);
@@ -78,19 +91,16 @@ public class CreateRefFolderTab extends Tab {
     }
 
     // EFFECTS: puts all the necessary text fields for the  user to fill in form
-    public void setTextFields(JPanel panel) {
+    public void setTextFields() {
         textFolderName = new JTextField();
         textFolderName.setBounds(230, 90, 300, 30);
-        panel.add(textFolderName);
+        leftPanel.add(textFolderName);
         textImageName = new JTextField();
         textImageName.setBounds(230, 280, 300, 30);
-        panel.add(textImageName);
-        textImageURL = new JTextField();
-        textImageURL.setBounds(230, 380, 300, 30);
-        panel.add(textImageURL);
+        leftPanel.add(textImageName);
     }
 
-    public void setButtons(JPanel panel) {
+    public void setButtons() {
         addImageBtn = new JButton("Add Image");
         addImageBtn.setBackground(new Color(28, 145, 235));
         addImageBtn.setForeground(Color.white);
@@ -102,11 +112,17 @@ public class CreateRefFolderTab extends Tab {
         addFolderBtn.setLocation(380, 550);
         addFolderBtn.setSize(200, 50);
         addFolderBtn.setFont(new Font("Roboto", Font.BOLD, 20));
+        uploadImgBtn = new JButton("Upload Image");
+        uploadImgBtn.setFocusable(false);
+        uploadImgBtn.setBackground(new Color(28, 145, 235));
+        uploadImgBtn.setForeground(Color.white);
+        uploadImgBtn.setBounds(230, 380, 200, 40);
 
         addFunctionalityToButtons();
 
-        panel.add(addImageBtn);
-        panel.add(addFolderBtn);
+        leftPanel.add(addImageBtn);
+        leftPanel.add(addFolderBtn);
+        leftPanel.add(uploadImgBtn);
     }
 
     @SuppressWarnings("methodlength")
@@ -139,6 +155,35 @@ public class CreateRefFolderTab extends Tab {
                 }
             }
         });
+
+        uploadImgBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == uploadImgBtn) {
+                    int returnVal = fc.showOpenDialog(CreateRefFolderTab.this);
+
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        String fileURL = file.getAbsolutePath();
+                        imageFileURL = fileURL;
+
+                        try {
+                            ImageIcon img = new ImageIcon(ImageIO.read(new File(imageFileURL)));
+                            Image scaleImg = img.getImage();
+                            scaleImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            img = new ImageIcon(scaleImg);
+                            JLabel label = new JLabel(img);
+                            label.setLocation(280, 280);
+                            leftPanel.add(label);
+                        } catch (Exception err) {
+                            JOptionPane.showMessageDialog(null, "Invalid file!",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                }
+            }
+        });
     }
 
     // EFFECTS: Creates a new colour palette using the information provided by user input
@@ -155,12 +200,10 @@ public class CreateRefFolderTab extends Tab {
     // EFFECTS: creates refImage
     public void addImage() {
         String imageName = textImageName.getText();
-        String imageURL = textImageURL.getText();
-        ReferenceImage referenceImage = new ReferenceImage(imageName, imageURL);
+        ReferenceImage referenceImage = new ReferenceImage(imageName, imageFileURL);
         refImages.add(referenceImage);
         imageListModel.addElement(referenceImage.getName());
         textImageName.setText("");
-        textImageURL.setText("");
         System.out.println("Added colour. Num of colours: " + refImages.size());
     }
 
