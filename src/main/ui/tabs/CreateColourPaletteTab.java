@@ -52,7 +52,8 @@ public class CreateColourPaletteTab extends Tab {
 
         labelPaletteName.setBounds(70, 90, 300, 30);
         panel.add(labelPaletteName);
-        label.setBounds(100, 180, 900, 30);
+        label.setBounds(250, 180, 900, 30);
+        label.setFont(new Font("Lilita One", Font.ITALIC, 15));
         panel.add(label);
         labelColourName.setBounds(70, 280, 300, 30);
         panel.add(labelColourName);

@@ -62,11 +62,12 @@ public class CreateRefFolderTab extends Tab {
 
         labelFolderName.setBounds(70, 90, 300, 30);
         leftPanel.add(labelFolderName);
-        label.setBounds(100, 180, 900, 30);
+        label.setBounds(250, 180, 900, 30);
+        label.setFont(new Font("Lilita One", Font.ITALIC, 15));
         leftPanel.add(label);
         labelImageName.setBounds(70, 280, 300, 30);
         leftPanel.add(labelImageName);
-        labelImageURL.setBounds(50, 380, 300, 30);
+        labelImageURL.setBounds(70, 380, 300, 30);
 
         leftPanel.add(labelImageURL);
         setTextFields();
@@ -90,6 +91,7 @@ public class CreateRefFolderTab extends Tab {
         return panel;
     }
 
+    // MODIFIES: this
     // EFFECTS: puts all the necessary text fields for the  user to fill in form
     public void setTextFields() {
         textFolderName = new JTextField();
@@ -100,6 +102,8 @@ public class CreateRefFolderTab extends Tab {
         leftPanel.add(textImageName);
     }
 
+    // MODIFIES: this
+    // EFFECTS: puts all the necessary buttons for the  user to add reference folder
     public void setButtons() {
         addImageBtn = new JButton("Add Image");
         addImageBtn.setBackground(new Color(28, 145, 235));
@@ -116,7 +120,9 @@ public class CreateRefFolderTab extends Tab {
         uploadImgBtn.setFocusable(false);
         uploadImgBtn.setBackground(new Color(28, 145, 235));
         uploadImgBtn.setForeground(Color.white);
-        uploadImgBtn.setBounds(230, 380, 200, 40);
+        uploadImgBtn.setBounds(230, 380, 190, 25);
+        uploadImgBtn.setFont(new Font("Roboto", Font.BOLD, 15));
+
 
         addFunctionalityToButtons();
 
@@ -125,6 +131,8 @@ public class CreateRefFolderTab extends Tab {
         leftPanel.add(uploadImgBtn);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds functionality to all the buttons
     @SuppressWarnings("methodlength")
     public void addFunctionalityToButtons() {
         addImageBtn.addActionListener(new ActionListener() {
@@ -142,16 +150,28 @@ public class CreateRefFolderTab extends Tab {
                 if (e.getSource() == addFolderBtn) {
                     String name = textFolderName.getText();
                     if (refFolderAlreadyExists(name)) {
-                        System.out.println("Reference folder " + name + " already exists.");
+                        JOptionPane.showMessageDialog(null,
+                                "Reference folder " + name + " already exists.",
+                                "Folder Already Exists",
+                                JOptionPane.ERROR_MESSAGE);
                         textFolderName.setText("");
                         return;
+                    } else if (name.isBlank()) {
+                        JOptionPane.showMessageDialog(null,
+                                "Don't be shy, give your reference folder a name.",
+                                "Folder Missing Name", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
+
                     ReferenceFolder rf = createReferenceFolder(name);
                     addReferenceFolder(rf);
                     imageList.removeAll();
                     imageListModel.removeAllElements();
                     refImages.clear();
-                    System.out.println("Added rf! Num of rfs: " + ui.getReferenceFolders().size());
+                    JOptionPane.showMessageDialog(null,
+                            "Added folder! Num of folders: " + ui.getReferenceFolders().size(),
+                            "Success!",
+                            JOptionPane.PLAIN_MESSAGE);
                 }
             }
         });
@@ -175,6 +195,10 @@ public class CreateRefFolderTab extends Tab {
                             JLabel label = new JLabel(img);
                             label.setLocation(280, 280);
                             leftPanel.add(label);
+                            JOptionPane.showMessageDialog(null,
+                                    "Uploaded image!",
+                                    "Successfully uploaded image.",
+                                    JOptionPane.PLAIN_MESSAGE);
                         } catch (Exception err) {
                             JOptionPane.showMessageDialog(null, "Invalid file!",
                                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -186,7 +210,7 @@ public class CreateRefFolderTab extends Tab {
         });
     }
 
-    // EFFECTS: Creates a new colour palette using the information provided by user input
+    // EFFECTS: Creates a new reference folder using the information provided by user input
     public ReferenceFolder createReferenceFolder(String name) {
 
         ReferenceFolder referenceFolder = new ReferenceFolder(name);
@@ -197,14 +221,29 @@ public class CreateRefFolderTab extends Tab {
         return referenceFolder;
     }
 
+    // MODIFIES: this
     // EFFECTS: creates refImage
     public void addImage() {
         String imageName = textImageName.getText();
+        if (imageName.isBlank()) {
+            JOptionPane.showMessageDialog(null,
+                    "Don't be shy, give your image file a name.",
+                    "Could not add image",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (imageFileURL.isBlank() && !imageName.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "You did not upload an image for " + imageName,
+                    "Upload an image!",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         ReferenceImage referenceImage = new ReferenceImage(imageName, imageFileURL);
         refImages.add(referenceImage);
         imageListModel.addElement(referenceImage.getName());
         textImageName.setText("");
-        System.out.println("Added colour. Num of colours: " + refImages.size());
+        System.out.println("Added image. Num of images: " + refImages.size());
     }
 
     // EFFECTS: Guides the user on how to add colours to the given colour palette, and adds the colours to

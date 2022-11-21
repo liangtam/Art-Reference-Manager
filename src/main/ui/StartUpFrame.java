@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Represents start up screen of the application
 public class StartUpFrame extends JFrame {
     private JFrame frame;
     private static final int WIDTH = 1000;
@@ -19,17 +20,17 @@ public class StartUpFrame extends JFrame {
         ImageIcon backgroundImage = new ImageIcon("src/main/resources/artref-bg.png");
         JLabel bg = new JLabel(backgroundImage);
 
-        JButton loadButton = new JButton();
-        loadButton.setBounds(360, 500, 250, 50);
-        loadButton.setText("Start");
-        loadButton.setFont(new Font("Roboto", Font.BOLD, 20));
-        loadButton.setBackground(new Color(28, 145, 235));
-        loadButton.setForeground(Color.white);
-        loadButton.setFocusable(false);
-        loadButton.addActionListener(new ActionListener() {
+        JButton startButton = new JButton();
+        startButton.setBounds(360, 500, 250, 50);
+        startButton.setText("Start");
+        startButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        startButton.setBackground(new Color(28, 145, 235));
+        startButton.setForeground(Color.white);
+        startButton.setFocusable(false);
+        startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == loadButton) {
+                if (e.getSource() == startButton) {
                     frame.dispose();
                     new MainFrame();
                 }
@@ -44,7 +45,7 @@ public class StartUpFrame extends JFrame {
         frame.setLocation(250, 0);
         frame.setIconImage(icon.getImage());
         frame.setResizable(false);
-        bg.add(loadButton);
+        bg.add(startButton);
         contentPane.add(bg);
     }
 }
