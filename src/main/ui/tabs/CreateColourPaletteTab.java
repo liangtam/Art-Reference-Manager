@@ -161,7 +161,7 @@ public class CreateColourPaletteTab extends Tab {
                     colourListModel.removeAllElements();
                     colours.clear();
                     JOptionPane.showMessageDialog(null, "Added palette! Number of Palettes: "
-                                    + ui.getColourPalettes().size(), "Success!", JOptionPane.PLAIN_MESSAGE);
+                            + ui.getColourPalettes().size(), "Success!", JOptionPane.PLAIN_MESSAGE);
                 }
             }
         });

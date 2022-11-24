@@ -1,3 +1,4 @@
+
 package model;
 
 import model.exceptions.CurrentPaletteException;

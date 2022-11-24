@@ -186,23 +186,6 @@ public class CreateRefFolderTab extends Tab {
                         File file = fc.getSelectedFile();
                         String fileURL = file.getAbsolutePath();
                         imageFileURL = fileURL;
-
-                        try {
-                            ImageIcon img = new ImageIcon(ImageIO.read(new File(imageFileURL)));
-                            Image scaleImg = img.getImage();
-                            scaleImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                            img = new ImageIcon(scaleImg);
-                            JLabel label = new JLabel(img);
-                            label.setLocation(280, 280);
-                            leftPanel.add(label);
-                            JOptionPane.showMessageDialog(null,
-                                    "Uploaded image!",
-                                    "Successfully uploaded image.",
-                                    JOptionPane.PLAIN_MESSAGE);
-                        } catch (Exception err) {
-                            JOptionPane.showMessageDialog(null, "Invalid file!",
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-                        }
                     }
 
                 }
@@ -223,6 +206,7 @@ public class CreateRefFolderTab extends Tab {
 
     // MODIFIES: this
     // EFFECTS: creates refImage
+    @SuppressWarnings("methodlength")
     public void addImage() {
         String imageName = textImageName.getText();
         if (imageName.isBlank()) {
@@ -238,6 +222,22 @@ public class CreateRefFolderTab extends Tab {
                     "Upload an image!",
                     JOptionPane.ERROR_MESSAGE);
             return;
+        }
+        try {
+            ImageIcon img = new ImageIcon(ImageIO.read(new File(imageFileURL)));
+            Image scaleImg = img.getImage();
+            scaleImg.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            img = new ImageIcon(scaleImg);
+            JLabel label = new JLabel(img);
+            label.setLocation(280, 280);
+            leftPanel.add(label);
+            JOptionPane.showMessageDialog(null,
+                    "Uploaded image!",
+                    "Successfully uploaded image.",
+                    JOptionPane.PLAIN_MESSAGE);
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Invalid file!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         ReferenceImage referenceImage = new ReferenceImage(imageName, imageFileURL);
         refImages.add(referenceImage);
