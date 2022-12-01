@@ -14,6 +14,7 @@ public class ColourPalette implements Writable {
     private String name;
     private int numOfColourPalettes;
     private int numOfColours;
+    private EventLog eventLog = EventLog.getInstance();
 
     // EFFECTS: creates a colour palette with given name, no sub colour palettes,
     //          and no colours
@@ -36,6 +37,7 @@ public class ColourPalette implements Writable {
 
         this.colours.add(colour);
         this.numOfColours++;
+        eventLog.logEvent(new Event("Added colour " + colour.getName() + " to palette: " + getName()));
         return true;
     }
 
@@ -51,6 +53,7 @@ public class ColourPalette implements Writable {
             if (c.getName().equals(colour)) {
                 this.colours.remove(c);
                 this.numOfColours--;
+                eventLog.logEvent(new Event("Removed colour " + colour + " from palette: " + getName()));
                 return true;
             }
         }
@@ -71,6 +74,8 @@ public class ColourPalette implements Writable {
         }
         this.subColourPalettes.add(colourPalette);
         numOfColourPalettes++;
+        eventLog.logEvent(new Event("Added sub colour palette " + colourPalette.getName()
+                + " to " + this.getName()));
         return true;
     }
 
@@ -86,6 +91,8 @@ public class ColourPalette implements Writable {
         if (ifSubColourPaletteAlreadyExists(colourPalette)) {
             this.subColourPalettes.remove(colourPalette);
             numOfColourPalettes--;
+            eventLog.logEvent(new Event("Deleted sub colour palette " + colourPalette.getName()
+                    + " from " + this.getName()));
             return true;
         }
         return false;

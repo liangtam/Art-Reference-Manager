@@ -68,7 +68,7 @@ and pull them out to display into a separate window
 ## DATA PERSISTENCE USER STORIES
 - As a user, I want to be able to save all the colour palettes I've created, including the colours and sub-colour palettes in each colour palette when I enter "s"
 - As a user, I want to be able to load all the saved colour palettes, including the colours and sub-colour palettes in each colour palette when I enter "l"
-# Citations:
+## Citations:
 - Java Swing GUI tutorial https://www.youtube.com/watch?v=Kmgo00avvEw&t=11742s Java Swing GUI tutorial
 - How to use ImageIcon on button https://stackoverflow.com/questions/4898584/java-using-an-image-as-a-button
 - How to scale an image icon https://www.youtube.com/watch?v=G3QJqbYuJ7M
@@ -76,9 +76,11 @@ and pull them out to display into a separate window
 - How to fix BoyLayout can't be shared error https://stackoverflow.com/questions/761341/error-upon-assigning-layout-boxlayout-cant-be-shared
 - How to let user upload image https://stackoverflow.com/questions/14142932/gui-with-java-gui-builder-for-uploading-an-image-and-displaying-to-a-panelinsid
 - How to let user upload image https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
+- How to call a method when application closes https://stackoverflow.com/questions/13800621/call-a-method-when-application-closes
 
 - edX Basics 1 Practice LongFormProblemsStarter (used it to reference how tabs worked)
 - Phase 2 JsonSerializationDemoProject (used it for data persistence)
+- Phase 4 AlarmSystem project Event and EventLog classes
 
 # Instructions for Grader
 

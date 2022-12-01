@@ -13,6 +13,7 @@ public class ReferenceFolder implements Writable {
     private String folderName;
     private List<ReferenceImage> refImages;
     private List<ReferenceFolder> subRefFolders;
+    private EventLog eventLog = EventLog.getInstance();
 
     // Creates a reference folder with given name and no images added yet
     public ReferenceFolder(String name) {
@@ -28,6 +29,7 @@ public class ReferenceFolder implements Writable {
     public boolean addRef(ReferenceImage ref) {
         if (!ifRefExistsAlready(ref)) {
             this.refImages.add(ref);
+            eventLog.logEvent(new Event("Added image " + ref.getName() + " to " + getFolderName()));
             return true;
         }
         return false;
@@ -42,6 +44,8 @@ public class ReferenceFolder implements Writable {
 
         if (ifRefExistsAlready(ref)) {
             this.refImages.remove(ref);
+            eventLog.logEvent(new Event("Removed image " + ref.getName() + " from " + getFolderName()));
+
             return true;
         }
         return false;
@@ -60,6 +64,8 @@ public class ReferenceFolder implements Writable {
         if (ifSubRefFolderAlreadyExists(referenceFolder)) {
             return false;
         }
+        eventLog.logEvent(new Event("Added sub folder " + referenceFolder.getFolderName()
+                + " to " + getFolderName()));
         this.subRefFolders.add(referenceFolder);
         return true;
     }
@@ -75,6 +81,8 @@ public class ReferenceFolder implements Writable {
         }
         if (ifSubRefFolderAlreadyExists(referenceFolder)) {
             this.subRefFolders.remove(referenceFolder);
+            eventLog.logEvent(new Event("Deleted sub folder " + referenceFolder.getFolderName()
+                    + " from " + getFolderName()));
             return true;
         }
 
