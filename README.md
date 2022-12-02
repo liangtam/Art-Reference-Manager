@@ -47,27 +47,28 @@ just to look at some reference pictures.
 That's why I search up references on my laptop instead.
 
 ## User stories
-- As a user, I want to be able to upload images I use for art references. (DONE)
-- As a user, I want to be able to create and name art folders (DONE)
-- As a user, I want to be able to insert those references into those folders (DONE)
-- As a user, I want to be able to have subfolders within folders (DONE)
-- As a user, I want to be able to delete and rename art folders (DONE)
-- As a user, I want to be able to delete any reference image uploaded (DONE)
-- As a user, I want to be able to create and name a colour palette (DONE)
-- As a user, I want to be able to add an arbitrary number of colours with specific hex values into a colour palette(DONE)
-- As a user, I want to be able to add an arbitrary number of sub-colour palettes within a non-sub colour palette (DONE)
-- As a user, I want to be able to rename a colour palette (DONE)
-- As a user, I want to be bale to delete a colour palette (DONE)
-- As a user, I want to be able to add colours in an existing colour palette (DONE)
-- As a user, I want to be able to delete colours in an existing colour palette (DONE)
-- As a user, I want to be able to rename colours in an existing colour paletee (DONE)
-- As a user, I want to be able to delete sub-colour palettes in an existing colour palette (DONE)
+- As a user, I want to be able to upload images I use for art references.
+- As a user, I want to be able to create and name art folders
+- As a user, I want to be able to insert those references into those folders
+- As a user, I want to be able to have subfolders within folders
+- As a user, I want to be able to delete and rename art folderS
+- As a user, I want to be able to delete any reference image uploaded
+- As a user, I want to be able to create and name a colour palette
+- As a user, I want to be able to add an arbitrary number of colours with specific hex values into a colour palette
+- As a user, I want to be able to add an arbitrary number of sub-colour palettes within a non-sub colour palette
+- As a user, I want to be able to rename a colour palette
+- As a user, I want to be bale to delete a colour palette
+- As a user, I want to be able to add colours in an existing colour palette
+- As a user, I want to be able to delete colours in an existing colour palette
+- As a user, I want to be able to rename colours in an existing colour palette
+- As a user, I want to be able to delete sub-colour palettes in an existing colour palette
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to select different images and colour palettes of my choosing,
 and pull them out to display into a separate window
 - EXTRA FEATURE IF TIME ALLOWS: As a user, I want to be able to extract exact hex and rbg values off a picture's pixel
 ## DATA PERSISTENCE USER STORIES
 - As a user, I want to be able to save all the colour palettes I've created, including the colours and sub-colour palettes in each colour palette when I enter "s"
 - As a user, I want to be able to load all the saved colour palettes, including the colours and sub-colour palettes in each colour palette when I enter "l"
+
 ## Citations:
 - Java Swing GUI tutorial https://www.youtube.com/watch?v=Kmgo00avvEw&t=11742s Java Swing GUI tutorial
 - How to use ImageIcon on button https://stackoverflow.com/questions/4898584/java-using-an-image-as-a-button
@@ -77,15 +78,48 @@ and pull them out to display into a separate window
 - How to let user upload image https://stackoverflow.com/questions/14142932/gui-with-java-gui-builder-for-uploading-an-image-and-displaying-to-a-panelinsid
 - How to let user upload image https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
 - How to call a method when application closes https://stackoverflow.com/questions/13800621/call-a-method-when-application-closes
+- How to add functionality to JPanel when clicked http://www.java2s.com/Code/JavaAPI/javax.swing/JPaneladdMouseListenerMouseListenermous.htm
 
 - edX Basics 1 Practice LongFormProblemsStarter (used it to reference how tabs worked)
 - Phase 2 JsonSerializationDemoProject (used it for data persistence)
 - Phase 4 AlarmSystem project Event and EventLog classes
 
-# Instructions for Grader
+## Instructions for Grader
 
 - You can add colours to a colour palette while creating the palette by going to the Create Colour Palette tab, and adding colors
 - You can display each colour's information of all the colours in a certain colour palette by clicking the palette in the Menu Tab
 - You can locate my visual component by launching the application. It's also in the main menu, and pop up windows for each palette or reference folder
 - You can save the state of my application by clicking the green save icon in the bottom right
 - You can reload the state of my application by clicking the blue refresh icon in the bottom right
+
+##  Phase 4: Task 2
+- This is the "add X to Y" event logs
+- Thu Dec 01 20:54:43 PST 2022
+  Added colour Light Blue to palette: Ocean
+  Thu Dec 01 20:54:43 PST 2022
+  Added colour Deep Aqua to palette: Ocean
+- 
+- This is a "delete X from Y" event log
+- Thu Dec 01 21:37:25 PST 2022
+  Removed colour Warm Blue from palette: Ocean
+- 
+- This is a "clear all X from Y" event log
+- Thu Dec 01 20:55:03 PST 2022
+  Deleted all colours from Warm Colours palette.
+
+- This is also an "add X to Y" event log, but for reference folders
+- Added image Image 1 to Folder 1
+  Thu Dec 01 20:54:43 PST 2022
+  Added image Image 2 to Folder 1
+  Thu Dec 01 20:54:43 PST 2022
+  Added image Image 3 to Folder 2
+
+- This is also "delete X from Y" event log, but for reference folders
+- Thu Dec 01 22:19:34 PST 2022
+  Removed image load from Folder 4
+- 
+- This is also a "clear all X from Y" event log, but for reference folders
+- Thu Dec 01 22:13:17 PST 2022
+  Deleted all images from Folder 4
+
+## Phase 4: Task 3

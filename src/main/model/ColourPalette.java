@@ -61,6 +61,13 @@ public class ColourPalette implements Writable {
     }
 
     // MODIFIES: this
+    // EFFECTS: deletes all colours from this palette
+    public void clearColours() {
+        colours.clear();
+        eventLog.logEvent(new Event("Deleted all colours from " + this.getName() + " palette."));
+    }
+
+    // MODIFIES: this
     // EFFECTS: if collection of subColourPalettes does not have a colour palette
     //             with same name as given colour palette, nor is the given colour palette a parent colour palette,
     //          adds given colour palette to collection of subColourPalettes, return true

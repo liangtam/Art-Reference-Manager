@@ -31,30 +31,30 @@
      {
           "listOfSubFolders": [],
           "listOfImages": [{
-               "imageName": "dsjbfjkabfa",
-               "imageURL": "src/main/resources/artref_save.png"
+               "imageName": "Random image",
+               "imageURL": "src/main/resources/artref-bg.png"
           }],
-          "folderName": "duahfdhfdsshfdhfioah"
+          "folderName": "Folder 4"
      },
      {
           "listOfSubFolders": [],
           "listOfImages": [{
-               "imageName": "load",
-               "imageURL": "src/main/resources/artref_load.png"
+               "imageName": "Random image again",
+               "imageURL": "src/main/resources/artref-bg.png"
           }],
-          "folderName": "dasfjdhafaf"
-     },
-     {
-          "listOfSubFolders": [],
-          "listOfImages": [{
-               "imageName": "pfp",
-               "imageURL": "C:\\Users\\tammi\\OneDrive\\Documents\\icyminitam_pfp.png"
-          }],
-          "folderName": "foldererererwr"
+          "folderName": "Folder 5"
      },
      {
           "listOfSubFolders": [],
           "listOfImages": [],
           "folderName": "Should be empty Folder"
+     },
+     {
+          "listOfSubFolders": [],
+          "listOfImages": [{
+               "imageName": "Add Icon Image lol",
+               "imageURL": "src/main/resources/artref-add.png"
+          }],
+          "folderName": "Folder 6"
      }
 ]

@@ -254,5 +254,15 @@ public class ReferenceFolderTest {
         assertEquals("Folder 1", folder1.getFolderName());
     }
 
+    @Test
+    public void testClearImages() {
+        folder1.addRef(ref1);
+        folder1.addRef(ref2);
+        folder1.clearImages();
+        assertTrue(folder1.getReferenceImages().isEmpty());
+        assertFalse(folder1.getReferenceImages().contains(ref1));
+        assertFalse(folder1.getReferenceImages().contains(ref2));
+    }
+
 
 }

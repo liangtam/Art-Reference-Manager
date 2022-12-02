@@ -243,4 +243,15 @@ public class ColourPaletteTest {
         assertEquals("Sunset but cooler", sunsetColourPalette.getName());
     }
 
+    @Test
+    public void testClearColours() {
+        sunsetColourPalette.addColour(colour1);
+        sunsetColourPalette.addColour(colour2);
+        sunsetColourPalette.clearColours();
+        assertTrue(sunsetColourPalette.getColours().isEmpty());
+        assertFalse(sunsetColourPalette.getColours().contains(colour1));
+        assertFalse(sunsetColourPalette.getColours().contains(colour2));
+
+    }
+
 }

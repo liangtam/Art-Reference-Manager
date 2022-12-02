@@ -100,6 +100,13 @@ public class ReferenceFolder implements Writable {
         return false;
     }
 
+    // MODIFIES: this
+    // EFFECTS: deletes all reference images from this folder
+    public void clearImages() {
+        this.refImages.clear();
+        eventLog.logEvent(new Event("Deleted all images from " + getFolderName()));
+    }
+
     // EFFECTS: checks if given reference image is already in the collection of reference images and returns
     public boolean ifRefExistsAlready(ReferenceImage ref) {
         for (ReferenceImage r: this.refImages) {

@@ -12,29 +12,43 @@
           "listOfColours": [
                {
                     "name": "Red",
-                    "hex": "#FF0000"
+                    "hex": "#f73f39"
+               },
+               {
+                    "name": "Purple",
+                    "hex": "#d47dba"
                },
                {
                     "name": "Yellow",
-                    "hex": "#FFFF00"
+                    "hex": "#f7cb39"
+               },
+               {
+                    "name": "Orange",
+                    "hex": "#f58f22"
                }
           ]
      },
      {
           "listOfSubColourPalettes": [],
           "paletteName": "Ocean",
-          "listOfColours": [{
-               "name": "Blue",
-               "hex": "#0000FF"
-          }]
-     },
-     {
-          "listOfSubColourPalettes": [],
-          "paletteName": "Warm",
-          "listOfColours": [{
-               "name": "Red",
-               "hex": "#FF0000"
-          }]
+          "listOfColours": [
+               {
+                    "name": "Sky Blue",
+                    "hex": "#03bafc"
+               },
+               {
+                    "name": "Light Blue",
+                    "hex": "#a6f0ff"
+               },
+               {
+                    "name": "Deep Aqua",
+                    "hex": "#009bb3"
+               },
+               {
+                    "name": "Cool Blue",
+                    "hex": "#4bcdeb"
+               }
+          ]
      },
      {
           "listOfSubColourPalettes": [],
@@ -65,5 +79,10 @@
                     "hex": "#743D2B"
                }
           ]
+     },
+     {
+          "listOfSubColourPalettes": [],
+          "paletteName": "Empty Palette",
+          "listOfColours": []
      }
 ]

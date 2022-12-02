@@ -117,7 +117,7 @@ public class MainTab extends Tab {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (e.getSource() == refFolder) {
-                        new ReferenceFolderDetailFrame(rf);
+                        new ReferenceFolderDetailFrame(rf, ui);
                     }
                 }
             });

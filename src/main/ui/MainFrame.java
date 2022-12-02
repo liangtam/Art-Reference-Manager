@@ -1,6 +1,8 @@
 package ui;
 
 import model.ColourPalette;
+import model.Event;
+import model.EventLog;
 import model.ReferenceFolder;
 import persistence.JsonReader;
 import persistence.JsonReaderRef;
@@ -10,6 +12,9 @@ import ui.tabs.CreateColourPaletteTab;
 import ui.tabs.CreateRefFolderTab;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,27 +42,59 @@ public class MainFrame extends JFrame {
     // EFFECTS: Constructs a JFrame
     public MainFrame() {
         super("Art Reference Manager");
+        initializeFields();
+        setSize(WIDTH, HEIGHT);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        WindowListener listener = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                int result = JOptionPane.showConfirmDialog(MainFrame.this,
+                        "Close the application?");
+                if (result == JOptionPane.OK_OPTION) {
+                    printLogs();
+                    MainFrame.this.dispose();
+                }
+            }
+        };
+        addWindowListener(listener);
+        setIconImage(ICON.getImage()); // changes the icon of the frame
+        setLocation(250, 0);
+        setUpTabbedPane();
+        loadComponents();
+        getContentPane().add(tabbedPane);
+        setVisible(true);
+    }
 
+    // MODIFIES: this
+    // EFFECTS: loads all colour palettes, reference folders, and tabs
+    private void loadComponents() {
+        loadColourPalettes();
+        loadReferenceFolders();
+        loadTabs();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes all the fields in the class
+    private void initializeFields() {
         jsonReader = new JsonReader(JSON_CP);
         jsonWriterCP = new JsonWriter(JSON_CP);
         jsonWriterRF = new JsonWriter(JSON_RF);
         jsonReaderRef = new JsonReaderRef(JSON_RF);
         this.colourPalettes = new ArrayList<>();
         this.referenceFolders = new ArrayList<>();
+    }
 
-        setSize(WIDTH, HEIGHT);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(ICON.getImage()); // changes the icon of the frame
-        setLocation(250, 0);
+    // EFFECTS: prints all event logs to console
+    public void printLogs() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
+        }
+    }
 
+    private void setUpTabbedPane() {
         tabbedPane = new JTabbedPane();
         tabbedPane.setTabPlacement(JTabbedPane.TOP);
-        loadColourPalettes();
-        loadReferenceFolders();
-        loadTabs();
-        getContentPane().add(tabbedPane);
-        setVisible(true);
     }
 
     // MODIFIES: this
@@ -82,8 +119,6 @@ public class MainFrame extends JFrame {
     public void loadColourPalettes() {
         try {
             colourPalettes = jsonReader.read();
-            System.out.println("Loaded all the colour palettes from "
-                    + JSON_CP + ". Num of cps: " + this.colourPalettes.size());
         } catch (IOException e) {
             System.out.println("Could not load from file: " + JSON_CP);
         }
@@ -95,7 +130,6 @@ public class MainFrame extends JFrame {
             jsonWriterCP.open();
             jsonWriterCP.writeListOfColourPalettes(this.colourPalettes);
             jsonWriterCP.close();
-            System.out.println("Saved all colour palettes to " + JSON_CP + ". Num of cps: " + colourPalettes.size());
         } catch (FileNotFoundException e) {
             System.out.println("Could not save to file: " + JSON_CP);
         }
@@ -107,8 +141,6 @@ public class MainFrame extends JFrame {
             jsonWriterRF.open();
             jsonWriterRF.writeListOfReferenceFolders(this.referenceFolders);
             jsonWriterRF.close();
-            System.out.println("Saved all reference folders to " + JSON_RF
-                    + ". Num of rfs: " + referenceFolders.size());
         } catch (FileNotFoundException e) {
             System.out.println("Could not save to file: " + JSON_RF);
         }
@@ -119,7 +151,6 @@ public class MainFrame extends JFrame {
     public void loadReferenceFolders() {
         try {
             referenceFolders = jsonReaderRef.read();
-            System.out.println("Loaded all the reference folders from " + JSON_RF);
         } catch (IOException e) {
             System.out.println("Could not save to file: " + JSON_RF);
         }
