@@ -156,7 +156,7 @@ public class CreateRefFolderTab extends Tab {
                                 JOptionPane.ERROR_MESSAGE);
                         textFolderName.setText("");
                         return;
-                    } else if (name.isBlank()) {
+                    } else if (name.equals("")) {
                         JOptionPane.showMessageDialog(null,
                                 "Don't be shy, give your reference folder a name.",
                                 "Folder Missing Name", JOptionPane.ERROR_MESSAGE);
@@ -209,14 +209,14 @@ public class CreateRefFolderTab extends Tab {
     @SuppressWarnings("methodlength")
     public void addImage() {
         String imageName = textImageName.getText();
-        if (imageName.isBlank()) {
+        if (imageName.equals("")) {
             JOptionPane.showMessageDialog(null,
                     "Don't be shy, give your image file a name.",
                     "Could not add image",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (imageFileURL.isBlank() && !imageName.equals("")) {
+        if (imageFileURL.equals("") && !imageName.equals("")) {
             JOptionPane.showMessageDialog(null,
                     "You did not upload an image for " + imageName,
                     "Upload an image!",
