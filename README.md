@@ -123,3 +123,5 @@ and pull them out to display into a separate window
   Deleted all images from Folder 4
 
 ## Phase 4: Task 3
+- I would probably use Composite pattern for ColourPalette since a ColourPalette can contain both Colours and ColourPalettes
+- I would probably use Composite pattern for ReferenceFolder since a ReferenceFolder can contain both ReferenceImages and ReferenceFolders
