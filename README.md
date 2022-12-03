@@ -93,35 +93,38 @@ and pull them out to display into a separate window
 - You can reload the state of my application by clicking the blue refresh icon in the bottom right
 
 ##  Phase 4: Task 2
-- This is the "add X to Y" event logs
+- This is the "add X to Y" event logs: add Colour to ColourPalette
 - Thu Dec 01 20:54:43 PST 2022
   Added colour Light Blue to palette: Ocean
-  Thu Dec 01 20:54:43 PST 2022
+  Thu Dec 01 20:55:00 PST 2022
   Added colour Deep Aqua to palette: Ocean
 - 
-- This is a "delete X from Y" event log
+- This is a "delete X from Y" event log: delete Colour from ColourPalette
 - Thu Dec 01 21:37:25 PST 2022
   Removed colour Warm Blue from palette: Ocean
 - 
-- This is a "clear all X from Y" event log
+- This is a "clear all X from Y" event log: delete all Colour objects from ColourPalette
 - Thu Dec 01 20:55:03 PST 2022
   Deleted all colours from Warm Colours palette.
 
-- This is also an "add X to Y" event log, but for reference folders
+- This is also an "add X to Y" event log, but for reference folders: add ReferenceImage to ReferenceFolder
 - Added image Image 1 to Folder 1
   Thu Dec 01 20:54:43 PST 2022
   Added image Image 2 to Folder 1
-  Thu Dec 01 20:54:43 PST 2022
+  Thu Dec 01 20:55:00 PST 2022
   Added image Image 3 to Folder 2
 
-- This is also "delete X from Y" event log, but for reference folders
+- This is also "delete X from Y" event log, but for reference folders: delete ReferenceImage from ReferenceFolder
 - Thu Dec 01 22:19:34 PST 2022
-  Removed image load from Folder 4
+  Removed image Image 4 from Folder 4
 - 
-- This is also a "clear all X from Y" event log, but for reference folders
+- This is also a "clear all X from Y" event log, but for reference folders: delete all ReferenceImage objects from ReferenceFolder
 - Thu Dec 01 22:13:17 PST 2022
   Deleted all images from Folder 4
 
 ## Phase 4: Task 3
-- I would probably use Composite pattern for ColourPalette since a ColourPalette can contain both Colours and ColourPalettes
-- I would probably use Composite pattern for ReferenceFolder since a ReferenceFolder can contain both ReferenceImages and ReferenceFolders
+- I would probably use Composite pattern for ColourPalette since a ColourPalette can contain both Colours and ColourPalettes, where the component is ColourItem (new abstract class), composite is ColourPalette, and leaf is Colour
+- I would probably use Composite pattern for ReferenceFolder since a ReferenceFolder can contain both ReferenceImages and ReferenceFolders, where the component is FolderItem (new abstract class), composite is ReferenceFolder, and leaf is ReferenceImage
+- I would probably add some sort of interface that ColourPalette and ReferenceFolders can implement, since both classes have very similar methods but for different objects
+- I would probably add some sort of interface that Colour and ReferenceImage can implement since both class' methods are very similar
+- 
