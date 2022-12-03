@@ -44,7 +44,7 @@ public class ReferenceFolder implements Writable {
 
         if (ifRefExistsAlready(ref)) {
             this.refImages.remove(ref);
-            eventLog.logEvent(new Event("Removed image " + ref.getName() + " from " + getFolderName()));
+            eventLog.logEvent(new Event("Deleted image " + ref.getName() + " from " + getFolderName()));
 
             return true;
         }

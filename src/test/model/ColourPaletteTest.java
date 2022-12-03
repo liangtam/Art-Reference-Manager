@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,9 +20,14 @@ public class ColourPaletteTest {
     private ColourPalette sunsetColourPalette;
     private ColourPalette oceanColourPalette;
     private ColourPalette warmColourPalette;
+    private EventLog eventLog;
+    private List<Event> eventsLogged;
 
     @BeforeEach
     public void setUp() {
+        eventsLogged = new ArrayList<>();
+        eventLog = EventLog.getInstance();
+        eventLog.clear();
         colour1 = new Colour("Red", "#FF0000");
         colour2 = new Colour("Green", "#00FF00");
         colour3 = new Colour("Sky Blue", "#87CEEB");
@@ -40,6 +46,11 @@ public class ColourPaletteTest {
         assertEquals(1, numOfColours);
         assertTrue(addColourSuccess);
         assertEquals(colour1, colours.get(0));
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Added colour Red to palette: Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals(2, eventsLogged.size());
     }
 
     @Test
@@ -54,6 +65,14 @@ public class ColourPaletteTest {
         List<Colour> colours = sunsetColourPalette.getColours();
         assertEquals(1, numOfColours);
         assertEquals(colour2, colours.get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+
+        assertEquals("Event log cleared.", eventsLogged.get(0).getDescription());
+        assertEquals("Added colour Green to palette: Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals(2, eventsLogged.size());
 
     }
 
@@ -73,6 +92,15 @@ public class ColourPaletteTest {
         assertEquals(colour1, colours.get(0));
         assertEquals(colour2, colours.get(1));
         assertEquals(colour3, colours.get(2));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Added colour Red to palette: Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals("Added colour Green to palette: Sunset Colours", eventsLogged.get(2).getDescription());
+        assertEquals("Added colour Sky Blue to palette: Sunset Colours", eventsLogged.get(3).getDescription());
+        assertEquals(4, eventsLogged.size());
+
     }
     // tests for addColourPalette
     @Test
@@ -80,6 +108,10 @@ public class ColourPaletteTest {
         boolean addSubColourPaletteSuccess = sunsetColourPalette.addSubColourPalette(oceanColourPalette);
         assertTrue(addSubColourPaletteSuccess);
         assertEquals(1, sunsetColourPalette.getNumOfColourPalettes());
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Added sub colour palette Ocean Colours to Sunset Colours", eventsLogged.get(1).getDescription());
 
     }
 
@@ -94,6 +126,12 @@ public class ColourPaletteTest {
         assertEquals(2, sunsetColourPalette.getNumOfColourPalettes());
         assertEquals(oceanColourPalette, sunsetColourPalette.getSubColourPalettes().get(0));
         assertEquals(warmColourPalette, sunsetColourPalette.getSubColourPalettes().get(1));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Added sub colour palette Ocean Colours to Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals("Added sub colour palette Warm Colours to Sunset Colours", eventsLogged.get(2).getDescription());
     }
 
     @Test
@@ -106,6 +144,12 @@ public class ColourPaletteTest {
         int numOfColourPalettes = sunsetColourPalette.getNumOfColourPalettes();
         assertEquals(1, numOfColourPalettes);
         assertTrue(sunsetColourPalette.getSubColourPalettes().contains(oceanColourPalette));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Added sub colour palette Ocean Colours to Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals(2, eventsLogged.size());
     }
 
     @Test
@@ -130,6 +174,12 @@ public class ColourPaletteTest {
         int numOfColourPalettes = sunsetColourPalette.getNumOfColourPalettes();
         assertEquals(1, numOfColourPalettes);
         assertEquals(oceanColourPalette, sunsetColourPalette.getSubColourPalettes().get(0));
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Added sub colour palette Warm Colours to Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals("Added sub colour palette Ocean Colours to Sunset Colours", eventsLogged.get(2).getDescription());
+        assertEquals("Deleted sub colour palette Warm Colours from Sunset Colours", eventsLogged.get(3).getDescription());
     }
 
     @Test
@@ -140,6 +190,13 @@ public class ColourPaletteTest {
         assertFalse(delOceanColourSuccess);
         assertEquals(1, sunsetColourPalette.getNumOfColourPalettes());
         assertTrue(sunsetColourPalette.getSubColourPalettes().contains(warmColourPalette));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+
+        assertEquals("Added sub colour palette Warm Colours to Sunset Colours", eventsLogged.get(1).getDescription());
+        assertEquals(2, eventsLogged.size());
     }
 
     @Test
@@ -162,6 +219,11 @@ public class ColourPaletteTest {
         int numOfColours = sunsetColourPalette.getNumOfColours();
         assertEquals(1, numOfColours);
         assertEquals(colour2, sunsetColourPalette.getColours().get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Removed colour Red from palette: Sunset Colours", eventsLogged.get(3).getDescription());
     }
 
     @Test
@@ -177,7 +239,6 @@ public class ColourPaletteTest {
 
         assertEquals(1, sunsetColourPalette.getNumOfColours());
         assertEquals(colour3, sunsetColourPalette.getColours().get(0));
-
     }
 
     // toJson tests
@@ -251,6 +312,11 @@ public class ColourPaletteTest {
         assertTrue(sunsetColourPalette.getColours().isEmpty());
         assertFalse(sunsetColourPalette.getColours().contains(colour1));
         assertFalse(sunsetColourPalette.getColours().contains(colour2));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event);
+        }
+        assertEquals("Deleted all colours from Sunset Colours palette.", eventsLogged.get(3).getDescription());
 
     }
 

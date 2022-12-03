@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,9 +18,14 @@ public class ReferenceFolderTest {
     private ReferenceFolder folder1;
     private ReferenceFolder folder2;
     private ReferenceFolder folder3;
+    private EventLog eventLog;
+    private List<String> eventsLogged;
 
     @BeforeEach
     public void setUp() {
+        eventLog = EventLog.getInstance();
+        eventLog.clear();
+        eventsLogged = new ArrayList<>();
         ref1 = new ReferenceImage("image1", "src/main/resources/artref-add.png");
         ref2 = new ReferenceImage("image2", "src/main/resources/artref-addcp.png");
         ref3 = new ReferenceImage("image3", "src/main/resources/artref-addfolder.png");
@@ -37,6 +43,13 @@ public class ReferenceFolderTest {
         assertEquals(1, refs.size());
         assertTrue(addRefImageSuccess);
         assertEquals(ref1, refs.get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+
+        assertEquals("Event log cleared.", eventsLogged.get(0));
+        assertEquals("Added image image1 to R1", eventsLogged.get(1));
     }
 
     @Test
@@ -50,6 +63,12 @@ public class ReferenceFolderTest {
         List<ReferenceImage> refs = folder1.getReferenceImages();
         assertEquals(1, refs.size());
         assertEquals(ref2, refs.get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Added image image2 to R1", eventsLogged.get(1));
+        assertEquals(2, eventsLogged.size());
     }
 
     @Test
@@ -65,6 +84,14 @@ public class ReferenceFolderTest {
         assertEquals(ref1, refs.get(0));
         assertEquals(ref2, refs.get(1));
         assertEquals(ref3, refs.get(2));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Added image image1 to R1", eventsLogged.get(1));
+        assertEquals("Added image image2 to R1", eventsLogged.get(2));
+        assertEquals("Added image image3 to R1", eventsLogged.get(3));
+
     }
 
     // tests for addSubFolder
@@ -74,6 +101,11 @@ public class ReferenceFolderTest {
         assertTrue(addSubFolderSuccess);
         assertEquals(1, folder1.getSubRefFolders().size());
         assertEquals(folder2, folder1.getSubRefFolders().get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Added sub folder R2 to R1", eventsLogged.get(1));
     }
 
     @Test
@@ -88,6 +120,11 @@ public class ReferenceFolderTest {
         assertEquals(2,subFolders.size());
         assertEquals(folder2, subFolders.get(0));
         assertEquals(folder3, subFolders.get(1));
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Added sub folder R2 to R1", eventsLogged.get(1));
+        assertEquals("Added sub folder R3 to R1", eventsLogged.get(2));
     }
 
     @Test
@@ -101,6 +138,12 @@ public class ReferenceFolderTest {
         assertEquals(1, folder1.getSubRefFolders().size());
         assertEquals(folder2, folder1.getSubRefFolders().get(0));
         assertFalse(folder1.getSubRefFolders().size() == 2);
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Added sub folder R2 to R1", eventsLogged.get(1));
+        assertEquals(2, eventsLogged.size());
     }
 
     @Test
@@ -125,16 +168,28 @@ public class ReferenceFolderTest {
         assertEquals(1, folder1.getSubRefFolders().size());
         assertFalse(folder1.getSubRefFolders().contains(folder2));
         assertEquals(folder3, folder1.getSubRefFolders().get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Deleted sub folder R2 from R1", eventsLogged.get(3));
     }
 
     @Test
     public void testDelSubFolderNonexistentSubFolder() {
         folder1.addSubRefFolder(folder2);
 
-        boolean delSubFolder2Success = folder1.deleteSubRefFolder(folder3);
-        assertFalse(delSubFolder2Success);
+        boolean delSubFolder3Success = folder1.deleteSubRefFolder(folder3);
+        assertFalse(delSubFolder3Success);
         assertEquals(1, folder1.getSubRefFolders().size());
         assertTrue(folder1.getSubRefFolders().contains(folder2));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Added sub folder R2 to R1", eventsLogged.get(1));
+        assertTrue(eventsLogged.size() == 2);
+
     }
 
     @Test
@@ -158,6 +213,11 @@ public class ReferenceFolderTest {
         assertEquals(1, folder1.getReferenceImages().size());
         assertEquals(ref2, folder1.getReferenceImages().get(0));
         assertFalse(folder1.getReferenceImages().contains(ref1));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Deleted image image1 from R1", eventsLogged.get(3));
     }
 
     @Test
@@ -173,6 +233,12 @@ public class ReferenceFolderTest {
 
         assertEquals(1, folder1.getReferenceImages().size());
         assertEquals(ref3, folder1.getReferenceImages().get(0));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals(2, eventsLogged.size());
+        assertEquals("Added image image3 to R1", eventsLogged.get(1));
     }
 
     // json tests
@@ -262,6 +328,11 @@ public class ReferenceFolderTest {
         assertTrue(folder1.getReferenceImages().isEmpty());
         assertFalse(folder1.getReferenceImages().contains(ref1));
         assertFalse(folder1.getReferenceImages().contains(ref2));
+
+        for (Event event: eventLog) {
+            eventsLogged.add(event.getDescription());
+        }
+        assertEquals("Deleted all images from R1", eventsLogged.get(3));
     }
 
 
