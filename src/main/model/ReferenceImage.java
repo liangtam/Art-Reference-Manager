@@ -15,6 +15,7 @@ public class ReferenceImage implements Writable {
     private String imageURL;
     private BufferedImage image;
 
+    // MODIFIES: this
     // EFFECTS: creates a reference image with given name and image file
     public ReferenceImage(String name, String imgFileURL) {
         this.name = name;

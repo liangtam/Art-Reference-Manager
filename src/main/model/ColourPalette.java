@@ -16,6 +16,7 @@ public class ColourPalette implements Writable {
     private int numOfColours;
     private EventLog eventLog = EventLog.getInstance();
 
+    // MODIFIES: this
     // EFFECTS: creates a colour palette with given name, no sub colour palettes,
     //          and no colours
     public ColourPalette(String name) {

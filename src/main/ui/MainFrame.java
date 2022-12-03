@@ -39,7 +39,7 @@ public class MainFrame extends JFrame {
     private List<ColourPalette> colourPalettes;
     private List<ReferenceFolder> referenceFolders;
 
-    // EFFECTS: Constructs a JFrame
+    // EFFECTS: Constructs a JFrame and sets up components on the JFrame
     public MainFrame() {
         super("Art Reference Manager");
         initializeFields();
@@ -92,6 +92,8 @@ public class MainFrame extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up a tabbed pane
     private void setUpTabbedPane() {
         tabbedPane = new JTabbedPane();
         tabbedPane.setTabPlacement(JTabbedPane.TOP);

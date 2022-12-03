@@ -11,6 +11,8 @@ public class StartUpFrame extends JFrame {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 696;
 
+    // MODIFIES: this
+    // EFFECTS: constructs a JFrame with a start button and Art Reference Manager background
     @SuppressWarnings("methodlength")
     StartUpFrame() {
         frame = new JFrame();

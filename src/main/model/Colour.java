@@ -10,6 +10,7 @@ public class Colour implements Writable {
     private String name;
     private Color colorVisual;
 
+    // MODIFIES: this
     // EFFECTS: creates a colour with a given name, hex code, and with a colour visual
     //          based on given hex code
     public Colour(String name, String hex) {

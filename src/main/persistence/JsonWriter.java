@@ -2,7 +2,6 @@ package persistence;
 
 import model.ColourPalette;
 import model.ReferenceFolder;
-import model.ReferenceImage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,6 +17,7 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destinationFile;
 
+    // MODIFIES: this
     // EFFECTS: constructs writer to write to destinationFile
     public JsonWriter(String destinationFile) {
         this.destinationFile = destinationFile;

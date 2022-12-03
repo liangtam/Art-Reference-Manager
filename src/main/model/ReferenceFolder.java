@@ -15,7 +15,8 @@ public class ReferenceFolder implements Writable {
     private List<ReferenceFolder> subRefFolders;
     private EventLog eventLog = EventLog.getInstance();
 
-    // Creates a reference folder with given name and no images added yet
+    // MODIFIES: this
+    // EFFECTS: creates a reference folder with given name and no images added yet
     public ReferenceFolder(String name) {
         this.folderName = name;
         this.refImages = new ArrayList<>();

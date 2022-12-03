@@ -16,6 +16,7 @@ import org.json.*;
 public class JsonReader {
     private String sourceFile;
 
+    // MODIFIES: this
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String sourceFile) {
         this.sourceFile = sourceFile;

@@ -38,6 +38,8 @@ public abstract class Tab extends JPanel {
         setLayout(null);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the 4 default buttons for every page--save, load, add palette, add folder
     public void setUpButtons() {
         addCPBtn.setBounds(700, 570, 100, 100);
         ImageIcon scaledAddCPIcon = scaleIcon(ADD_CP_ICON, addCPBtn);
@@ -71,6 +73,7 @@ public abstract class Tab extends JPanel {
         return scaledIcon;
     }
 
+    // EFFECTS: add functionality to buttons on the page
     public abstract void addFunctionalityToButtons();
 
 }

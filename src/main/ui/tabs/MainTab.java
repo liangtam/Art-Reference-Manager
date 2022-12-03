@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// Represents a page holding all the colour palettes created
+// Represents a page holding all the colour palettes and reference folders created
 public class MainTab extends Tab {
 
     public MainTab(MainFrame frame) {
@@ -69,6 +69,7 @@ public class MainTab extends Tab {
         });
     }
 
+    // EFFECTS: renders all colour palettes and reference folders as palette icons and reference icons, respectively
     public void renderItems() {
         renderReferenceFolders();
         renderColourPalettes();
@@ -100,6 +101,8 @@ public class MainTab extends Tab {
         }
     }
 
+    // EFFECTS: Shows a folder icon image for every reference folder. Each icon can be clicked to show more info
+    //          about the clicked folder
     public void renderReferenceFolders() {
         this.removeAll();
         for (ReferenceFolder rf: this.ui.getReferenceFolders()) {

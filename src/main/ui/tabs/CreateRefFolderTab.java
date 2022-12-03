@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
+// Represents a page for users to create a reference folder
 public class CreateRefFolderTab extends Tab {
     JLabel labelFolderName;
     JTextField textFolderName;
@@ -39,9 +40,6 @@ public class CreateRefFolderTab extends Tab {
         rightPanel = new JPanel();
         leftPanel.setLayout(null);
         leftPanel.setBounds(0, 0, 600, 696);
-//        rightPanel.setLayout(null);
-//        rightPanel.setBounds(400, 0, 600, 696);
-
         imageList = new JList();
         imageListModel = new DefaultListModel();
         addForm();

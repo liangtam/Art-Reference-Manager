@@ -12,10 +12,11 @@ import model.ReferenceImage;
 import org.json.*;
 
 // **heavily based on JsonSerializationDemo project**
-// Represents a reader that reads Json files
+// Represents a reader that reads Json files containing reference folders
 public class JsonReaderRef {
     private String sourceFile;
 
+    // MODIFIES: this
     // EFFECTS: constructs reader to read from source file
     public JsonReaderRef(String sourceFile) {
         this.sourceFile = sourceFile;
