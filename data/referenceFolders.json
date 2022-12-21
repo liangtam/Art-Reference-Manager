@@ -10,15 +10,19 @@
           }],
           "listOfImages": [
                {
-                    "imageName": "Image 1",
-                    "imageURL": "src/main/resources/artref-add.png"
+                    "imageName": "Fight",
+                    "imageURL": "/C://Users/tammi/Downloads/how-to-draw-action-poses-step-7_5e4c9cc0ee2335.50366448_51603_3_3.jpg"
                },
                {
-                    "imageName": "Image 2",
-                    "imageURL": "src/main/resources/artref-addcp.png"
+                    "imageName": "Weapons",
+                    "imageURL": "/C://Users//tammi/Downloads/EsTOhexW8AUcTyC.png"
+               },
+               {
+                    "imageName": "Dynamic Walk",
+                    "imageURL": "/C://Users/tammi/Downloads/0043_021_2.jpg"
                }
           ],
-          "folderName": "Folder 1"
+          "folderName": "Action Poses"
      },
      {
           "listOfSubFolders": [],
@@ -26,15 +30,15 @@
                "imageName": "Image 4",
                "imageURL": "src/main/resources/artref-bg.png"
           }],
-          "folderName": "Folder 3"
+          "folderName": "Duo Poses"
      },
      {
           "listOfSubFolders": [],
           "listOfImages": [{
                "imageName": "Random image",
-               "imageURL": "src/main/resources/artref-bg.png"
+               "imageURL": "/C://Users/tammi/Downloads/a8e5eb4960d237e829094ca401450b4b.jpg"
           }],
-          "folderName": "Folder 4"
+          "folderName": "Landscapes"
      },
      {
           "listOfSubFolders": [],
@@ -42,7 +46,7 @@
                "imageName": "Random image again",
                "imageURL": "src/main/resources/artref-bg.png"
           }],
-          "folderName": "Folder 5"
+          "folderName": "Brawl Stars"
      },
      {
           "listOfSubFolders": [],
@@ -55,6 +59,6 @@
                "imageName": "Add Icon Image lol",
                "imageURL": "src/main/resources/artref-add.png"
           }],
-          "folderName": "Folder 6"
+          "folderName": "GIDLE"
      }
 ]
