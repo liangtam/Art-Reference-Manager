@@ -84,14 +84,6 @@ and pull them out to display into a separate window
 - Phase 2 JsonSerializationDemoProject (used it for data persistence)
 - Phase 4 AlarmSystem project Event and EventLog classes
 
-## Instructions for Grader
-
-- You can add colours to a colour palette while creating the palette by going to the Create Colour Palette tab, and adding colors
-- You can display each colour's information of all the colours in a certain colour palette by clicking the palette in the Menu Tab
-- You can locate my visual component by launching the application. It's also in the main menu, and pop up windows for each palette or reference folder
-- You can save the state of my application by clicking the green save icon in the bottom right
-- You can reload the state of my application by clicking the blue refresh icon in the bottom right
-
 ##  Phase 4: Task 2
 - This is the "add X to Y" event logs: add Colour to ColourPalette
 - Thu Dec 01 20:54:43 PST 2022
