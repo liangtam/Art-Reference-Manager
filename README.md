@@ -1,6 +1,10 @@
 # My Personal Project - Reference Manager
 
-Tammie Liang, 52445806
+![image](https://github.com/TammieLiang/Art-Reference-Manager/assets/63375678/c1de0fe3-60ef-4c98-95cc-fe63b57ac7bb)
+
+Full pdf with more screenshots + functionalities here:
+
+[ArtRef (1).pdf](https://github.com/TammieLiang/Art-Reference-Manager/files/13292320/ArtRef.1.pdf)
 
 ## About the project
 The application is for artists to better manage any pictures and colour palettes
